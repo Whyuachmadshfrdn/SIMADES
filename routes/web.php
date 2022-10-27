@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WargaController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\PanduanController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +25,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/login', [RegisterUserController::class, 'create']);
 Route::get('/register', [RegisterUserController::class, 'create']);
+Route::get('/dashboard-admin', [AdminController::class, 'index']);
 
-Auth::routes();
+// Warga
+// Route::get('warga', [WargaController::class, 'index']);
+// Route::get('warga-add', [WargaController::class, 'create']);
+// Route::get('detail-warga', [WargaController::class, 'store']);
+// Route::post('detail-warga', [WargaController::class, 'store']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('warga', WargaController::class);
+Route::resource('staff', StaffController::class);
+Route::resource('panduan', PanduanController::class);
+
+
+

@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%!important;
+    height: 100%!important;
+}
+.st-wrapper{
+    width: 100%!important;
+    height: 100%!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.st-wrapper .container-fluid{
+    width: 100%;
+    flex-grow: 2;
+}
+.st-wrapper footer{
+    bottom: 0;
+}
