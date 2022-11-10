@@ -17,7 +17,15 @@
 
             <link href="{{ asset('assert/css/sb-admin-2.min.css') }}" rel="stylesheet">
             <link href="{{ asset('assert/css/design.css') }}" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+            <script src="js/jquery.min.js" type="text/javascript"></script>
+            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+            <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">  
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+            
+        
         </head>
         <body>
             @include('layouts.navbar')
@@ -32,6 +40,11 @@
                 @endif
             @yield('content')
         </body>
+        <script type="text/javascript">
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+        </script>
 
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
@@ -48,11 +61,11 @@
     
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assert/vendor/jquery/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assert/vendor/jquery/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('assert/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assert/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    {{-- <script src="{{ asset('assert/vendor/jquery-easing/jquery.easing.min.js') }}"></script> --}}
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('assert/js/sb-admin-2.min.js') }}"></script>
