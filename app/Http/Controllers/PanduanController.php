@@ -41,7 +41,7 @@ class PanduanController extends Controller
 
     public function show($id)
     {
-        $panduans = Panduan::find($id);
+        $panduans = Panduan::where('id', $id)->get();
         return view('layouts.admin.panduans.detail-panduan', compact('panduans'));
     }
 

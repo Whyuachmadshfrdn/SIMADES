@@ -8,9 +8,11 @@
                                         src="../../assert/img/logo-simades.png" alt="...">
                                 </div>
                             </div>
-                        </a>
-                        <li class="nav-item active">
+                        </a> <br>
+                        <li class="nav-item">
                             <a class="nav-link" href="/dashboard-admin">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span>Dashboard</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -20,7 +22,7 @@
                             </a>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                 <div class="bg-white py-2 collapse-inner rounded">
-                                    <a class="collapse-item" href="{{route('warga.index')}}">Warga</a>
+                                    <a class="collapse-item" href="/warga">Warga</a>
                                     <a class="collapse-item" href="data-keluarga.php">Keluarga</a>
                                     <a class="collapse-item" href="{{route('staff.index')}}">Staff</a>
                                 </div>
@@ -54,6 +56,11 @@
                             <a class="nav-link" href="{{route('panduan.index')}}">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <span>Panduan</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>Manajemen User</span></a>
                         </li>
                         <div class="sidebar-heading">
                         </div>

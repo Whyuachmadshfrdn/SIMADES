@@ -19,8 +19,36 @@
         </div>
         @endif
 
-        <a href="{{ route('warga.create') }}">
+        <a href="{{ route('warga-add') }}">
             <button type="button" class="btn btn-success mb-1">Tambah Data</button>
+        </a>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+            Import Data
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Upload File Excel</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{{ route('wargaimport') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="excel" class="form-control" placeholder="Recipient's username"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="modal-body">
+                    </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary mt-3" type="submit" id="button-addon2">Import</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <a href="#">
+            <button type="button" class="btn btn-success mb-1">Export Data</button>
         </a>
         <div class="row">
             <div class="col-12">
@@ -32,6 +60,7 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>NIK</th>
+                                    <th>RT</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,13 +70,14 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$item->nama_warga}}</td>
                                     <td>{{$item->nik_warga}}</td>
+                                    <td>{{$item->rt}}</td>
                                     <td width="7%">
-                                        <a href="{{ route('warga.show', $item->id) }}">
+                                        <a href="{{ route('warga-detail', $item->id) }}">
                                         <button type="button" class="btn btn-block btn-primary">Lihat</button>
                                         </a>
                                     </td>
                                     <td width="7%">
-                                        <a href="{{ route('warga.edit', $item->id) }}">
+                                        <a href="{{ route('ubah-warga', $item->id) }}">
                                         <button type="button" class="btn btn-block btn-warning">Ubah</button>
                                         </a>
                                     </td>

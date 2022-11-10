@@ -7,8 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\PanduanController;
-
-
+use App\Models\Warga;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +30,27 @@ Route::get('/register', [RegisterUserController::class, 'create']);
 Route::get('/dashboard-admin', [AdminController::class, 'index']);
 
 // Warga
-// Route::get('warga', [WargaController::class, 'index']);
-// Route::get('warga-add', [WargaController::class, 'create']);
-// Route::get('detail-warga', [WargaController::class, 'store']);
-// Route::post('detail-warga', [WargaController::class, 'store']);
 
 Route::resource('warga', WargaController::class);
+// Route::get('warga', [WargaController::class, 'index']);
+Route::post('wargaimport', [WargaController::class, 'wargaimport'])->name('wargaimport');
+
+Route::get('/warga', [WargaController::class, 'index'])->name('warga');
+Route::get('/warga-add', [WargaController::class, 'create'])->name('warga-add');
+Route::post('/add-warga', [WargaController::class, 'store'])->name('add-warga');
+Route::get('/warga-detail/{id}', [WargaController::class, 'show'])->name('warga-detail');
+Route::get('/ubah-warga/{id}', [WargaController::class, 'edit'])->name('ubah-warga');
+Route::post('/updatewarga/{id}', [WargaController::class, 'update'])->name('updatewarga');
+Route::get('/wargadelete/{id}', [WargaController::class, 'delete'])->name('wargadelete');
+
+
+
+
+
+
+// Route::get('/exportwarga', 'WargaController@WargaExport')->name('exportwarga');
+
+
 Route::resource('staff', StaffController::class);
 Route::resource('panduan', PanduanController::class);
 

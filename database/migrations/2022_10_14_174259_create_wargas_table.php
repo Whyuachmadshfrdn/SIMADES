@@ -25,6 +25,8 @@ class CreateWargasTable extends Migration
             $table->string("agama",50) ->nullable();
             $table->enum("status_perkawinan", ["Kawin", "Belum Kawin"]) ->nullable();
             $table->enum("shdk", ["Kepala Keluarga", "Istri", "Anak"]) ->nullable();
+            $table->string("pendidikan_akhir",50) ->nullable();
+            $table->string("pekerjaan",50) ->nullable();
             $table->string("nama_ibu",50) ->nullable();
             $table->string("nama_ayah",50) ->nullable();
             $table->string("alamat",225) ->nullable();

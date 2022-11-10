@@ -67,6 +67,14 @@
             </select> 
           </div>
           <div class="form-group">
+            <label for="exampleInputEmail1">Pendidikan Akhir</label>
+            <input name="pendidikan_akhir" type="text" class="form-control" id="exampleInputEmail1" placeholder="masukan Nama Ibu" value="{{$wargas->pendidikan_akhir}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Pekerjaan</label>
+            <input name="pekerjaan" type="text" class="form-control" id="exampleInputEmail1" placeholder="masukan Nama Ibu" value="{{$wargas->pekerjaan}}">
+          </div>
+          <div class="form-group">
             <label for="exampleInputEmail1">Nama Ibu</label>
             <input name="nama_ibu" type="text" class="form-control" id="exampleInputEmail1" placeholder="masukan Nama Ibu" value="{{$wargas->nama_ibu}}">
           </div>

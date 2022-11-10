@@ -21,6 +21,8 @@ class Warga extends Model
         'agama',
         'status_perkawinan',
         'shdk',
+        'pendidikan_akhir',
+        'pekerjaan',
         'nama_ibu',
         'nama_ayah',
         'alamat',        

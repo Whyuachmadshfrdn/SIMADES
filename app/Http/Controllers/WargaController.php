@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
+use App\Exports\WargaExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Imports\WargaImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,8 +19,17 @@ class WargaController extends Controller
      */
     public function index()
     {
-        $wargas = Warga::latest()->paginate(100);
+        $wargas = Warga::latest()->paginate(10);
         return view('layouts.admin.warg.warga', compact('wargas'));
+    }
+
+    public function wargaimport(Request $request){
+        Excel::import(new WargaImport, $request->excel);
+        return redirect()->route('warga')->with('success', 'User Import Successfully');
+    }
+
+    public function wargaexport(){
+        return Excel::download(new WargaExport,'warga.xlsx');
     }
 
     public function create()
@@ -37,6 +50,8 @@ class WargaController extends Controller
             'agama' => 'required',
             'status_perkawinan' => 'required',
             'shdk' => 'required',
+            'pendidikan_akhir' => 'required',
+            'pekerjaan' => 'required',
             'nama_ibu' => 'required',
             'nama_ayah' => 'required',
             'alamat' => 'required',
@@ -59,6 +74,8 @@ class WargaController extends Controller
             'agama' => $request->agama,
             'status_perkawinan' => $request->status_perkawinan,
             'shdk' => $request->shdk,
+            'pendidikan_akhir' => $request->pendidikan_akhir,
+            'pekerjaan' => $request->pekerjaan,
             'nama_ibu' => $request->nama_ibu,
             'nama_ayah' => $request->nama_ayah,
             'alamat' => $request->alamat,
@@ -99,12 +116,13 @@ class WargaController extends Controller
             'agama' => 'required',
             'status_perkawinan' => 'required',
             'shdk' => 'required',
+            'pendidikan_akhir' => 'required',
+            'pekerjaan' => 'required',
             'nama_ibu' => 'required',
             'nama_ayah' => 'required',
             'alamat' => 'required',
             'kelurahan' => 'required',
             'rt' => 'required',
-            'foto' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         $wargas = Warga::findOrFail($id);
@@ -121,6 +139,8 @@ class WargaController extends Controller
                 'agama' => $request->agama,
                 'status_perkawinan' => $request->status_perkawinan,
                 'shdk' => $request->shdk,
+                'pendidikan_akhir' => $request->pendidikan_akhir,
+                'pekerjaan' => $request->pekerjaan,
                 'nama_ibu' => $request->nama_ibu,
                 'nama_ayah' => $request->nama_ayah,
                 'alamat' => $request->alamat,
@@ -144,6 +164,8 @@ class WargaController extends Controller
                 'agama' => $request->agama,
                 'status_perkawinan' => $request->status_perkawinan,
                 'shdk' => $request->shdk,
+                'pendidikan_akhir' => $request->shdk,
+                'pekerjaan' => $request->shdk,
                 'nama_ibu' => $request->nama_ibu,
                 'nama_ayah' => $request->nama_ayah,
                 'alamat' => $request->alamat,
@@ -154,9 +176,9 @@ class WargaController extends Controller
         }
 
         if($wargas){
-            return redirect()->route('warga.index')->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('warga')->with(['success' => 'Data Berhasil Diupdate!']);
         } else {
-            return redirect()->route('warga.index')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('warga')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 
@@ -166,10 +188,10 @@ class WargaController extends Controller
 
         if ($wargas !=null) {
             $wargas->delete();
-            return redirect()->route('warga.index')->with(['message'=> 'Berhasil Terhapus!!']);
+            return redirect()->route('warga')->with(['message'=> 'Berhasil Terhapus!!']);
         }
         
-        return redirect()->route('warga.index')
+        return redirect()->route('warga')
                          ->with(['message'=> 'GAGAL!!']);
     }
 }

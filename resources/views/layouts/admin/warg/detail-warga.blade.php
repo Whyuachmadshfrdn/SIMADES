@@ -53,6 +53,14 @@
                     <p class="h5">{{$wargas->shdk}}</p> 
                 </div>
                 <div>
+                    <p class="h6"><b>Pendidikan Akhir</b></p>
+                    <p class="h5">{{$wargas->pendidikan_akhir}}</p> 
+                </div>
+                <div>
+                    <p class="h6"><b>Pekerjaan</b></p>
+                    <p class="h5">{{$wargas->pekerjaan}}</p> 
+                </div>
+                <div>
                     <p class="h6"><b>Nama Ibu</b></p>
                     <p class="h5">{{$wargas->nama_ibu}}</p> 
                 </div>

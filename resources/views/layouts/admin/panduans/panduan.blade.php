@@ -31,8 +31,8 @@
                                 @forelse ($panduans as $item)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->judul}}</td>
-                                    <td>{{$item->deskripsi}}</td>
+                                    <td>{{substr ("$item->judul", 0,25)}}</td>
+                                    <td>{{substr ("$item->deskripsi", 0,50)}}</td>
                                     <td width="7%">
                                         <a href="{{ route('panduan.show', $item->id) }}">
                                         <button type="button" class="btn btn-block btn-primary">Lihat</button>

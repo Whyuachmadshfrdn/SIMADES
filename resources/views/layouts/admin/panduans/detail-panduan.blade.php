@@ -22,7 +22,7 @@
                     <br>
                     <div>
                       <p class="h6"><b>Deskripsi</b></p>
-                      <p class="h5">{{$item->deskripsi}}</p> 
+                      <p class="h5">{{$panduans->deskripsi}}</p> 
                     </div>
                   </div>
                 </div>
