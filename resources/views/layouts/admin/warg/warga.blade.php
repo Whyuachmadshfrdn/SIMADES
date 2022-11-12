@@ -7,10 +7,8 @@
                 <h1 class="h3 mb-0 text-gray-800">Data Warga</h1>
             </div>
         </div>
-
         <section class="content">
             <div class="container-fluid">
-
                 @if ($message = Session::get('succes'))
                     <div class="alert alert-success alert-dismissble">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i
@@ -18,9 +16,8 @@
                         <h4><i class="icon fa fa-check"></i>Success!</h4>
                     </div>
                 @endif
-
                 <a href="{{ route('warga-add') }}">
-                    <button type="button" class="btn btn-success mb-1">Tambah Data</button>
+                    <button type="button" class="btn btn-primary mb-1">Tambah Data</button>
                 </a>
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
                     Import Data
@@ -48,8 +45,11 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <button type="button" class="btn btn-success mb-1">Export Data</button>
+            <a href="{{ route('wargaexport') }}">
+                <button href="{{ route('wargaexport') }}" type="button" class="btn btn-success mb-1">Export Data</button>
+            </a>
+            <a href="{{ asset('assert/templete_import/warga.xlsx') }}">
+                <button href="" type="button" class="btn btn-success mb-1">Download Templete</button>
             </a>
             <div class="row">
                 <div class="col-12">

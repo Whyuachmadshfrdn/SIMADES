@@ -32,9 +32,8 @@ Route::get('/dashboard-admin', [AdminController::class, 'index']);
 // Warga
 
 Route::resource('warga', WargaController::class);
-// Route::get('warga', [WargaController::class, 'index']);
 Route::post('wargaimport', [WargaController::class, 'wargaimport'])->name('wargaimport');
-
+Route::get('wargaexport', [WargaController::class, 'wargaexport'])->name('wargaexport');
 Route::get('/warga', [WargaController::class, 'index'])->name('warga');
 Route::get('/warga-add', [WargaController::class, 'create'])->name('warga-add');
 Route::post('/add-warga', [WargaController::class, 'store'])->name('add-warga');

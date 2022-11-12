@@ -30,5 +30,6 @@ class Warga extends Model
         'rt',
         'foto',    
     ];
-    protected $dates=['tgl_lahir'];
+    protected $dates = ['tgl_lahir'];
+    
 }
