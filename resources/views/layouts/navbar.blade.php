@@ -24,7 +24,7 @@
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <a class="collapse-item" href="/warga">Warga</a>
                                     <a class="collapse-item" href="data-keluarga.php">Keluarga</a>
-                                    <a class="collapse-item" href="{{route('staff.index')}}">Staff</a>
+                                    <a class="collapse-item" href="/staff">Staff</a>
                                 </div>
                             </div>
                         </li>

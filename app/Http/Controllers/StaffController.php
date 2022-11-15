@@ -68,9 +68,9 @@ class StaffController extends Controller
         ]);
 
         if($staff){
-            return redirect()->route('staff.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('staff')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
-            return redirect()->route('staff.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('staff')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -151,9 +151,9 @@ class StaffController extends Controller
         }
 
         if($staffs){
-            return redirect()->route('staff.index')->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('staff')->with(['success' => 'Data Berhasil Diupdate!']);
         } else {
-            return redirect()->route('staff.index')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('staff')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 
@@ -169,10 +169,10 @@ class StaffController extends Controller
 
         if ($staffs !=null) {
             $staffs->delete();
-            return redirect()->route('staff.index')->with(['message'=> 'Berhasil Terhapus!!']);
+            return redirect()->route('staff')->with(['message'=> 'Berhasil Terhapus!!']);
         }
         
-        return redirect()->route('staff.index')
+        return redirect()->route('staff')
                          ->with(['message'=> 'GAGAL!!']);
     }
 }

@@ -17,6 +17,8 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Deskripsi</label>
+            {{-- <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Blog">{{ old('content', $blog->content) }}</textarea> --}}
+                            
             <input name="deskripsi" type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukan isi panduan">
           </div>
         </div>

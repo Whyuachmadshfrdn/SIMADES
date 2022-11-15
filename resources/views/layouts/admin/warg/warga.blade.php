@@ -16,7 +16,7 @@
                         <h4><i class="icon fa fa-check"></i>Success!</h4>
                     </div>
                 @endif
-                <a href="{{ route('warga-add') }}">
+                <a href="/warga-add">
                     <button type="button" class="btn btn-primary mb-1">Tambah Data</button>
                 </a>
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
@@ -76,10 +76,10 @@
                                                 <a href="{{ route('warga-detail', $item->id) }}">
                                                     <button type="button" class="btn btn-block btn-primary">Lihat</button>
                                                 </a>
-                                                <a href="{{ route('ubah-warga', $item->id) }}">
+                                                <a href="/ubah-warga/{{ $item->id }}">
                                                     <button type="button" class="btn btn-block btn-warning">Ubah</button>
                                                 </a>
-                                                <form method="post" action="{{ route('warga.destroy', $item->id) }}">
+                                                <form action="/wargadelete/{{ $item->id }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-block btn-danger">Hapus</button>

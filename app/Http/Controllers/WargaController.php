@@ -85,9 +85,9 @@ class WargaController extends Controller
         ]);
 
         if($wargas){
-            return redirect()->route('warga.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('warga')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
-            return redirect()->route('warga.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('warga')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
