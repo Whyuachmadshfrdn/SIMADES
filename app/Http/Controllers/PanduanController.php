@@ -11,12 +11,12 @@ class PanduanController extends Controller
     public function index()
     {
         $panduans = Panduan::latest()->paginate(100);
-        return view('layouts.admin.panduans.panduan', compact('panduans'));
+        return view('admin.panduans.panduan', compact('panduans'));
     }
 
     public function create()
     {
-        return view('layouts.admin.panduans.panduan-add');
+        return view('admin.panduans.panduan-add');
     }
 
     public function store(Request $request)
@@ -42,13 +42,13 @@ class PanduanController extends Controller
     public function show($id)
     {
         $panduans = Panduan::where('id', $id)->get();
-        return view('layouts.admin.panduans.detail-panduan', compact('panduans'));
+        return view('admin.panduans.detail-panduan', compact('panduans'));
     }
 
     public function edit($id)
     {
         $panduans = Panduan::find($id);
-        return view('layouts.admin.panduans.ubah-panduan', compact('panduans'));
+        return view('admin.panduans.ubah-panduan', compact('panduans'));
     }
 
     public function update(Request $request, $id)

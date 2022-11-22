@@ -16,8 +16,8 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = Staff::latest()->paginate(100);
-        return view('layouts.admin.staf.staff', compact('staffs'));
+        $staff = Staff::latest()->paginate(100);
+        return view('admin.staf.staff', compact('staff'));
     }
 
     /**
@@ -27,7 +27,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('layouts.admin.staf.staff-add');
+        return view('admin.staf.staff-add');
     }
 
     /**
@@ -84,7 +84,7 @@ class StaffController extends Controller
     {
         // return view('staff.show', compact('staff'));
             $staff = Staff::find($id);
-            return view('layouts.admin.staf.detail-staff', compact('staff'));
+            return view('admin.staf.detail-staff', compact('staff'));
     }
 
     /**
@@ -96,7 +96,7 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staff = Staff::find($id);
-        return view('layouts.admin.staf.ubah-staff', compact('staff'));
+        return view('admin.staf.ubah-staff', compact('staff'));
     }
 
     /**
@@ -118,11 +118,11 @@ class StaffController extends Controller
             'no_telp' =>'required'
         ]);
 
-        $staffs = Staff::findOrFail($id);
+        $staff = Staff::findOrFail($id);
 
         if($request->file('foto') == "") {
             
-            $staffs->update([
+            $staff->update([
                 'nip_staff' => $request->nip_staff,
                 'nama_staff' => $request->nama_staff,
                 'tmpt_lahir' => $request->tmpt_lahir,
@@ -133,12 +133,12 @@ class StaffController extends Controller
             ]);
         } else {
 
-            Storage::disk('local')->delete('public/staff/'.$staffs->foto);
+            Storage::disk('local')->delete('public/staff/'.$staff->foto);
 
             $foto = $request->file('foto');
             $foto->storeAs('public/staff', $foto->hashName());
 
-            $staffs->update([
+            $staff->update([
                 'nip_staff' => $request->nip_staff,
                 'nama_staff' => $request->nama_staff,
                 'tmpt_lahir' => $request->tmpt_lahir,
@@ -150,7 +150,7 @@ class StaffController extends Controller
             ]);
         }
 
-        if($staffs){
+        if($staff){
             return redirect()->route('staff')->with(['success' => 'Data Berhasil Diupdate!']);
         } else {
             return redirect()->route('staff')->with(['error' => 'Data Gagal Diupdate!']);
@@ -165,10 +165,10 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        $staffs = Staff::where('id',$id)->first();
+        $staff = Staff::where('id',$id)->first();
 
-        if ($staffs !=null) {
-            $staffs->delete();
+        if ($staff !=null) {
+            $staff->delete();
             return redirect()->route('staff')->with(['message'=> 'Berhasil Terhapus!!']);
         }
         

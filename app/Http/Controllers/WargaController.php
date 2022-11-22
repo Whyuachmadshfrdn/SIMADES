@@ -20,7 +20,7 @@ class WargaController extends Controller
     public function index()
     {
         $wargas = Warga::all();
-        return view('layouts.admin.warg.warga', compact('wargas'));
+        return view('admin.warg.warga', compact('wargas'));
     }
 
     public function wargaimport(Request $request){
@@ -34,7 +34,7 @@ class WargaController extends Controller
 
     public function create()
     {
-        return view('layouts.admin.warg.warga-add');
+        return view('admin.warg.warga-add');
     }
 
     public function store(Request $request)
@@ -94,13 +94,13 @@ class WargaController extends Controller
     public function show($id)
     {
         $wargas = Warga::find($id);
-        return view('layouts.admin.warg.detail-warga', compact('wargas'));
+        return view('admin.warg.detail-warga', compact('wargas'));
     }
 
     public function edit($id)
     {
         $wargas = Warga::find($id);
-        return view('layouts.admin.warg.ubah-warga', compact('wargas'));
+        return view('admin.warg.ubah-warga', compact('wargas'));
     }
 
     public function update(Request $request, $id)

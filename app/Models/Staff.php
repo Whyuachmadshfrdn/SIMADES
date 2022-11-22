@@ -20,4 +20,5 @@ class Staff extends Model
         'no_telp',
         'foto',    
     ];
+    protected $dates = ['tgl_lahir'];
 }

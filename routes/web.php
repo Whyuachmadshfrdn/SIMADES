@@ -7,6 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\PanduanController;
+use App\Http\Controllers\SuratController;
+use App\Http\Controllers\KategoriSuratController;
+
 use App\Models\Staff;
 use App\Models\Warga;
 
@@ -53,9 +56,31 @@ Route::get('/staff-edit/{id}', [StaffController::class, 'edit'])->name('staff-ed
 Route::post('/update-staff/{id}', [StaffController::class, 'update'])->name('update-staff');
 Route::get('/staffdelete/{id}', [StaffController::class, 'destroy'])->name('staffdelete');
 
+// Pelayanan
+Route::get('/index', [KategoriSuratController::class, 'index'])->name('index');
+Route::get('/konfir-pelayanan', [KategoriSuratController::class, 'index'])->name('konfir-pelayanan');
 
+Route::get('/add', [KategoriSuratController::class, 'create'])->name('add');
+Route::post('/add-kategori', [KategoriSuratController::class, 'store'])->name('add-kategori');
+Route::get('/detail-kategori/{id}', [KategoriSuratController::class, 'show'])->name('detail-kategori');
+Route::get('/edit-kategori/{id}', [KategoriSuratController::class, 'edit'])->name('edit-kategori');
+Route::post('/update-kategori/{id}', [KategoriSuratController::class, 'update'])->name('update-kategori');
+Route::get('/kategoridelete/{id}', [KategoriSuratController::class, 'destroy'])->name('kategoridelete');
 
+// surat
+Route::get('/ajukan', [SuratController::class, 'index'])->name('ajukan');
+Route::get('/add-pengajuan', [SuratController::class, 'create'])->name('add-pengajuan');
+Route::post('/add-surat', [SuratController::class, 'store'])->name('add-surat');
+Route::get('/surat-detail/{id}', [SuratController::class, 'show'])->name('surat-detail');
+Route::get('/surat-edit/{id}', [SuratController::class, 'edit'])->name('surat-edit');
+Route::post('/update-surat/{id}', [SuratController::class, 'update'])->name('update-surat');
+Route::get('/suratdelete', [SuratController::class, 'destroy'])->name('suratdelete');
 
+// isi Surat
+// Route::resource('isisurat', IsiSuratController::class);
+Route::resource('/isiSurat', 'IsiSuratController')->except('index', 'create', 'edit', 'show');
+
+// Panduan
 Route::resource('panduan', PanduanController::class);
 
 

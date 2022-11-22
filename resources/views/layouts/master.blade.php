@@ -16,25 +16,24 @@
         rel="stylesheet">
 
     <link href="{{ asset('assert/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="{{ asset('/js/plugins/nucleo/css/nucleo.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
+    @yield('styles')
+
     <link href="{{ asset('assert/css/design.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <script src="{{ asset('assert/vendor/jquery/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assert/vendor/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" --}}
-        {{-- integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> --}}
-
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">   --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <style>
         thead input {
             width: 100%;
         }
     </style>
-    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script> --}}
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.dataTables.min.css"></script>
-    {{-- <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
 
@@ -46,13 +45,7 @@
 
 <body>
     @include('layouts.navbar')
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger" role="alert">
-                {{ $error }}
-            </div>
-        @endforeach
-    @endif
+    
     @yield('content')
 </body>
 <script type="text/javascript">
@@ -91,7 +84,7 @@
                                 // Get the search value
                                 $(this).attr('title', $(this).val());
                                 var regexr =
-                                '({search})'; //$(this).parents('th').find('select').val();
+                                    '({search})'; //$(this).parents('th').find('select').val();
 
                                 var cursorPosition = this.selectionStart;
                                 // Search the column for that value
@@ -161,5 +154,6 @@
         toastr.error('{{ session('error') }}', 'GAGAL!');
     @endif
 </script>
+@stack('scripts')
 
 </html>
