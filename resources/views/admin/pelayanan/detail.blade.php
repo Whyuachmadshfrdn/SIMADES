@@ -55,6 +55,12 @@
                                 <p class="h6"><b>Persyaratan</b></p>
                                 <p class="h5">{{ $kategori->persyaratan }}</p>
                             </div>
+                            <div>
+                                <p class="h6"><b>Isian Input Surat</b></p>
+                                @foreach ($isian_kategori as $item)
+                                <p class="h5">{{ $item->item }}</p>
+                                @endforeach
+                            </div>
                             <div class="col-md-8">
                                 <p class="h6"><b>Templete Surat</b></p>
                                 <a href="{{ Storage::url('public/kategori/templete-surat/') .$kategori->templete_surat }}">

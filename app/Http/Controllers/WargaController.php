@@ -94,7 +94,8 @@ class WargaController extends Controller
     public function show($id)
     {
         $wargas = Warga::find($id);
-        return view('admin.warg.detail-warga', compact('wargas'));
+        $keluarga = Warga::where('nik_warga', $wargas->nik_warga)->get();
+        return view('admin.warg.detail-warga', compact('wargas','keluarga'));
     }
 
     public function edit($id)

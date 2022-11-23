@@ -29,9 +29,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [RegisterUserController::class, 'create']);
-Route::get('/register', [RegisterUserController::class, 'create']);
-Route::get('/dashboard-admin', [AdminController::class, 'index']);
+// Route::get('/login', [RegisterUserController::class, 'create']);
+// Route::get('/register', [RegisterUserController::class, 'create']);
+Route::get('/dashboard-admin', [AdminController::class, 'index'])->name('dashboard');
 
 // Warga
 
@@ -83,5 +83,5 @@ Route::resource('/isiSurat', 'IsiSuratController')->except('index', 'create', 'e
 // Panduan
 Route::resource('panduan', PanduanController::class);
 
-
+require('auth.php');
 

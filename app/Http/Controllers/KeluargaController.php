@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\IsianKategori;
-use App\Models\Kategori;
-use App\Models\Pengajuan;
 use Illuminate\Http\Request;
+use App\Models\Warga;
 
-class SuratController extends Controller
+class KeluargaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class SuratController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
-        return view('admin.surats.ajukan', compact('kategori'));
+        //
     }
 
     /**
@@ -25,13 +22,10 @@ class SuratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $kategori_id = $request->pilih_kategori;
-        $isian = IsianKategori::where('kategori_id', $request->pilih_kategori)->get();
-        return view('admin.surats.add-pengajuan', compact('isian', 'kategori_id'));
+        //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -41,12 +35,7 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        // $Pengajuan = Pengajuan::create([
-        //     'warga_id' => $request->warga_id,
-        //     '' => $request->,
-            
-        
-        // ]);
+        //
     }
 
     /**
@@ -68,9 +57,7 @@ class SuratController extends Controller
      */
     public function edit($id)
     {
-        $isian_kategori = IsianKategori::find($id);
-        return view('admin.pelayanan.edit', compact('isian_kategori'));
-
+        //
     }
 
     /**

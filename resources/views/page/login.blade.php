@@ -1,6 +1,6 @@
-@extends('layouts.master')
+{{-- @extends('layouts.master')
 
-@section('content')
+@section('content') --}}
     <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-12 col-md-9">
@@ -43,4 +43,4 @@
             </div>
         </div>
     </div>
-@endsection
+{{-- @endsection --}}

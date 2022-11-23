@@ -79,7 +79,7 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Warga belum Tersedia.
+                                        Data Kategori belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>

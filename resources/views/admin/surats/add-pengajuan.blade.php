@@ -14,6 +14,10 @@
                                         <h2 class="mb-0">Ajukan Surat</h2>
                                         <p class="mb-0 text-sm">Isi Kolom Dibawah</p>
                                     </div>
+                                    <div class="mb-3">
+                                        <a href="/ajukan" class="btn btn-success" title="Kembali"><i
+                                                class="fas fa-arrow-left"></i> Kembali</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -23,10 +27,18 @@
                     <div class="col">
                         <div class="card bg-secondary shadow h-100">
                             <div class="card-body">
-                                <div class="form-group col-lg-4 col-md-6">
+                                <div class="form-group col-lg-12 col-md-6">
                                     <form autocomplete="off" action="/add-warga" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <fieldset disabled>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Data Warga</label>
+                                                <input type="text" class="form-control form-control- w-100" name="">
+                                            </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-12">
                                             @foreach ($isian as $item)
                                             <div class="form-group">
                                                 <label class="form-control-label">{{ $item->item }}</label>

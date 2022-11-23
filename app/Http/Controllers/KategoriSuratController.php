@@ -83,7 +83,8 @@ class KategoriSuratController extends Controller
     public function show($id)
     {
         $kategori = Kategori::find($id);
-        return view('admin.pelayanan.detail', compact('kategori'));
+        $isian_kategori = IsianKategori::where('kategori_id', $id)->get();
+        return view('admin.pelayanan.detail', compact('kategori','isian_kategori'));
     }
 
     /**
@@ -95,7 +96,8 @@ class KategoriSuratController extends Controller
     public function edit($id)
     {
         $kategori = Kategori::find($id);
-        return view('admin.pelayanan.edit', compact('kategori'));
+        $isian_kategori = IsianKategori::where('kategori_id', $id)->get();
+        return view('admin.pelayanan.edit', compact('kategori','isian_kategori'));
     }
 
     /**
@@ -121,6 +123,11 @@ class KategoriSuratController extends Controller
             'deskripsi' => $request->deskripsi,
             'icon' => $request->icon,
             'persyaratan' => $request->persyaratan,
+        ]);
+
+        $isian_kategori = IsianKategori::findOrFail($id);
+        $isian_kategori->update([
+            'item' => $request->item,
         ]);
 
         if($request->file('templete_surat')) {
