@@ -72,14 +72,14 @@
                                 <input type="file" class="form-control @error('templete_surat') is-invalid @enderror" name="templete_surat" id="customFile" />
                                 @error('templete_surat')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
                             </div>
+
                             <div class="form-group">
-                                @foreach ($isian_kategori as $item)
                                 <label class="form-control-label">Isian Input Surat</label>
+                                
                                     <textarea class="form-control form-control-alternative @error('isian') is-invalid @enderror" name="isian"
-                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL" > {{ $item->item }}
-                                        
+                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL" >{{ implode($isian_kategori->pluck("item")->toArray(), ",") }}
                                     </textarea> 
-                                @endforeach  
+                                
                             </div>
                         </div>
                         <div class="form-group mt-3">

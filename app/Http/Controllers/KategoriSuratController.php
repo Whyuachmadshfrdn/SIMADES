@@ -125,10 +125,20 @@ class KategoriSuratController extends Controller
             'persyaratan' => $request->persyaratan,
         ]);
 
-        $isian_kategori = IsianKategori::findOrFail($id);
-        $isian_kategori->update([
-            'item' => $request->item,
-        ]);
+        $isian_kategori = IsianKategori::where("kategori_id", $kategori->id)->get();
+        foreach ($isian_kategori as $key => $value) {
+            if (!in_array($value->item, explode(",", $request->isian))) {
+                $value->delete();
+            }
+        }
+        foreach (explode(",", $request->isian) as $key => $value) {
+            if ($isian_kategori->where("item", $value)->first() == null) {
+                IsianKategori::create([
+                    "kategori_id" => $id,
+                    "item" => $value,
+                ]);
+            }
+        }
 
         if($request->file('templete_surat')) {
             Storage::disk('local')->delete('public/kategori/templete-surat/'.$kategori->templete_surat);
@@ -140,9 +150,9 @@ class KategoriSuratController extends Controller
         } 
             
         if($kategori){
-            return redirect()->back()->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('index')->with(['success' => 'Data Berhasil Diupdate!']);
         } else {
-            return redirect()->back()->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('index')->with(['error' => 'Data Gagal Diupdate!']);
         }
 
     }
@@ -165,3 +175,4 @@ class KategoriSuratController extends Controller
                          ->with(['message'=> 'GAGAL!!']);
     }
 }
+

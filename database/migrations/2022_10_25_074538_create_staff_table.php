@@ -22,6 +22,7 @@ class CreateStaffTable extends Migration
             $table->enum("jenis_kelamin", ["Laki-laki", "Perempuan"])->nullable();
             $table->string("jabatan",50) ->nullable();
             $table->string("no_telp",50) ->nullable();
+            $table->string('email',50) ->nullable();
             $table->string("foto", 225) ->nullable();
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ class CreateWargasTable extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->nullable();
             $table->string("kk",16)->nullable();
             $table->string("nik_warga",16) ->nullable();
             $table->string("nama_warga",64) ->nullable();

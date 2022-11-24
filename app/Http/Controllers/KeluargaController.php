@@ -14,7 +14,9 @@ class KeluargaController extends Controller
      */
     public function index()
     {
-        //
+        $wargas = Warga::all();
+        $keluarga = Warga::where('nik_warga', $wargas->nik_warga)->get();
+        return view('admin.family.keluarga', compact('wargas','keluarga'));
     }
 
     /**

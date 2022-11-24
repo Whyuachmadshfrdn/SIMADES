@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard-Admin</title>
+    <title>Login</title>
 
     <link href="{{ asset('assert/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -37,10 +37,6 @@
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
 
-
-
-
-{{-- @section('content') --}}
     <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-12 col-md-9">
@@ -49,32 +45,38 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h1 text-gray-900 mb-4, font-weight-bold">Selamat Datang</h1>
-                                        <h1 class="h4 text-primary, font-weight-bold">Aplikasi Pelayanan Administrasi</h1>                                       
+                                    <div class="text-center mb-4">
+                                        <img height="130px" src="{{ url('/assert/img/logo-penajam-desa.png') }}" alt="logo">
                                     </div>
-                                    <form class="user">
+                                    <div class="text-center">
+                                        <h1 class="h1 text-gray-900 mb-4, font-weight-bold">Selamat Datang Di SIMADES</h1>
+                                        <h1 class="h4 text-primary, font-weight-bold">Login Warga
+                                        </h1>
+                                    </div>
+                                    <form method="POST" action="{{ route('login') }}" class="user">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="nik" class="form-control form-control-user"
+                                            <input name="email" type="nik" class="form-control form-control-user"
                                                 id="6409***********04" aria-describedby="NIKHelp"
-                                                placeholder="Masukan NIK Anda">
+                                                placeholder="Masukan NIK Anda" autofocus>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <input name="password" type="password"
+                                                class="form-control form-control-user" id="exampleInputPassword"
+                                                placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input name="remember" type="checkbox" class="custom-control-input"
+                                                    id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="admin/dashboard.php" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Masuk
-                                        </a>
-                                    </form>                               
-                                    </div>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -83,4 +85,4 @@
             </div>
         </div>
     </div>
-{{-- @endsection --}}
+    </div>

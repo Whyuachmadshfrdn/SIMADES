@@ -17,6 +17,10 @@ class WargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function dashboard()
+    {
+        return View('wargas.dashboard-warga');
+    }
     public function index()
     {
         $wargas = Warga::all();
@@ -94,8 +98,7 @@ class WargaController extends Controller
     public function show($id)
     {
         $wargas = Warga::find($id);
-        $keluarga = Warga::where('nik_warga', $wargas->nik_warga)->get();
-        return view('admin.warg.detail-warga', compact('wargas','keluarga'));
+        return view('admin.warg.detail-warga', compact('wargas'));
     }
 
     public function edit($id)

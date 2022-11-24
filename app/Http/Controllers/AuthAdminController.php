@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\LoginAdminRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticatedSessionController extends Controller
+class AuthAdminController extends Controller
 {
     /**
      * Display the login view.
@@ -17,31 +17,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return view('admin.login');
     }
 
     /**
      * Handle an incoming authentication request.
      *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @param  \App\Http\Requests\Auth\LoginAdminRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    public function store(LoginAdminRequest $request)
     {
         $request->authenticate();
-        // dd($request->only('email', 'password'));
-        // dd(Auth::attempt($request->only('email', 'password')));
-        if (Auth::attempt($request->only('email', 'password'))) {
 
-            // RateLimiter::hit($this->throttleKey());
+        $request->session()->regenerate();
 
-            $request->session()->regenerate();
-            return redirect("dashboard-warga");
-        }
-        return redirect("/login")->withErrors([
-            'error' => "tidak ada data yang cocok"
-        ]);
-
+        return redirect()->route('dashboard-admin');
     }
 
     /**
@@ -58,6 +49,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/admin-login');
     }
 }

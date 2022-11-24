@@ -18,6 +18,7 @@ class Staff extends Model
         'jenis_kelamin',
         'jabatan',
         'no_telp',
+        'email',
         'foto',    
     ];
     protected $dates = ['tgl_lahir'];
