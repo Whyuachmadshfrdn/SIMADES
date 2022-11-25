@@ -55,13 +55,29 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa fa-plus-square" aria-hidden="true"></i>
-                    <span>Pelayanan</span>
+                    <span>Kelola Pelayanan</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/index">Kelola Pelayanan</a>
-                        <a class="collapse-item" href="/konfir-pelayanan">Konfirmasi Pengajuan</a>
+                        <a class="collapse-item" href="/index">Tambah Kategori Surat</a>
+                    </div>
+                </div>
+            </li>
+        @endif
+
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone"
+                    aria-expanded="true" aria-controls="collapseone">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    <span>Permohonan</span>
+                </a>
+                <div id="collapseone" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Surat Masuk</a>
+                        <a class="collapse-item" href="#">Surat Keluar</a>
                     </div>
                 </div>
             </li>

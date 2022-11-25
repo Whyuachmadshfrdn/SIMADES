@@ -12,7 +12,7 @@
                                     class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between text-center text-md-left">
                                     <div class="mb-3">
                                         <h2 class="mb-0">Ajukan Surat</h2>
-                                        <p class="mb-0 text-sm">Isi Kolom Dibawah</p>
+                                        <p class="mb-0 text-sm">Isi Dengan Lengkap Kolom Dibawah</p>
                                     </div>
                                     <div class="mb-3">
                                         <a href="/ajukan" class="btn btn-success" title="Kembali"><i
@@ -33,8 +33,36 @@
                                         <div class="col-md-12">
                                             <fieldset disabled>
                                             <div class="fo w-100">
-                                                <label class="form-control-label">Data Warga</label>
-                                                <input type="text" class="form-control form-control- w-100" name="">
+                                                <label class="form-control-label">Nama</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">NIK</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Tempat, Tanggal Lahir</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Jenis Kelamin</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Agama</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Status</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Pekerjaan</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
+                                            </div>
+                                            <div class="fo w-100">
+                                                <label class="form-control-label">Alamat</label>
+                                                <input type="text" class="form-control form-control- w-100" name="" value="auto load data warga yang login">
                                             </div>
                                             </fieldset>
                                         </div>

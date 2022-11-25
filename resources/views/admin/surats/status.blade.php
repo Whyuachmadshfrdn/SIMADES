@@ -1,5 +1,6 @@
-<?php include "../header.php"; ?>
-<?php include "sidebar-admin.php"; ?>
+@extends('layouts.master')
+
+@section('content')
 
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -17,6 +18,7 @@
                             <thead>
                                 <tr>
                                     <th>Jenis Surat</th>
+                                    <th>Nama Pengaju</th>
                                     <th>Tanggal Pengajuan</th>
                                     <th>Status Surat</th>
                                     <th>Aksi</th>
@@ -25,16 +27,17 @@
                             <tbody>
                                 <tr>
                                     <td>SK Domisili</td>
+                                    <td>Wahyu</td>
                                     <td>2022-05-20</td>
                                     <td> <mark style="background-color: green">selesai</mark>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <a href="#">
                                         <button type="button" class="btn btn-xs btn-info">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </button>
                                         </a>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a href="#">
                                         <button type="button" class="btn btn-xs btn-info">
@@ -54,4 +57,4 @@
     </div>
 </section>
 
-<?php include "../footer.php"; ?>
+@endsection

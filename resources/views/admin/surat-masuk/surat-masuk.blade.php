@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Konfirmasi Pengajuan</h1>
+                <h1 class="h3 mb-0 text-gray-800">Surat Masuk</h1>
             </div>
         </div>
 
@@ -36,17 +36,17 @@
                                                 <mark style="background-color: green; color: white;">Diterima</mark> -->
                                         </td>
                                         <td width="7%">
-                                            <a href="lihat-pengajuan.php">
+                                            <a href="#">
                                                 <button type="button" class="btn btn-block btn-primary">Lihat</button>
                                             </a>
                                         </td>
                                         <td width="7%">
-                                            <a href="ubah-warga.php">
+                                            <a href="#">
                                                 <button type="button" class="btn btn-block btn-success">Terima</button>
                                             </a>
                                         </td>
                                         <td width="7%">
-                                            <a href="blank.html">
+                                            <a href="#">
                                                 <button type="button" class="btn btn-block btn-danger">Tolak</button>
                                             </a>
                                         </td>
