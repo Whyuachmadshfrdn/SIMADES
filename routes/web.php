@@ -64,6 +64,8 @@ Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () 
         Route::post('wargaimport', [WargaController::class, 'wargaimport'])->name('wargaimport');
         Route::get('wargaexport', [WargaController::class, 'wargaexport'])->name('wargaexport');
         Route::get('/warga', [WargaController::class, 'index'])->name('warga');
+        Route::get('/create-akun', [WargaController::class, 'gendata'])->name('create-akun');
+        Route::post('/create-account', [WargaController::class, 'gendatapost'])->name('create-account');
         Route::get('/warga-add', [WargaController::class, 'create'])->name('warga-add');
         Route::post('/add-warga', [WargaController::class, 'store'])->name('add-warga');
         Route::get('/warga-detail/{id}', [WargaController::class, 'show'])->name('warga-detail');
