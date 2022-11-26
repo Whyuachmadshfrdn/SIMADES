@@ -5,16 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengajuan extends Model
+class NoSurat extends Model
 {
     use HasFactory;
-    public $table = 'pengajuan';
+    public $table = 'no_surats';
     protected $guarded = ['id'];
-
-    
-
-    public function kategori()
-    {
-        return $this->hasOne(Kategori::class,'id','kategori_id');
-    }
 }

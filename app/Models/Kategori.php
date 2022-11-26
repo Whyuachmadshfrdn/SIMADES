@@ -17,4 +17,14 @@ class Kategori extends Model
         'templete_surat',    
         'persyaratan',    
     ];
+
+    public function lampiran()
+    {
+        return $this->hasMany(LampiranKategori::class,'kategori_id','id');
+    }
+
+    public function isian()
+    {
+        return $this->hasMany(IsianKategori::class,'kategori_id','id');
+    }
 }
