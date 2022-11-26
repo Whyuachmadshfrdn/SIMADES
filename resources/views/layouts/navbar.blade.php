@@ -33,7 +33,7 @@
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'warga')
+        @if (auth()->user()->role == 'warga' || auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'kades')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
@@ -44,7 +44,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/ajukan">Ajukan Surat</a>
-                        <a class="collapse-item" href="konfirmasi-pengajuan.php">Status Surat</a>
+                        <a class="collapse-item" href="/list-surat-user">Status Surat</a>
                     </div>
                 </div>
             </li>

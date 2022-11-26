@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\IsianKategori;
+use App\Models\LampiranKategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,27 +46,41 @@ class KategoriSuratController extends Controller
             'deskripsi' => 'required',
             'icon' => 'required',
             'persyaratan' => 'required',
-            'templete_surat' => 'required|mimes:doc,docx',
         ]);
        
         $templete = $request->file('templete_surat');
-        $templete->storeAs('public/kategori/templete-surat', $templete->hashName());
+        
+        $nameFile = time().'_'.$templete->getClientOriginalName();
+        $templete->storeAs('public/kategori/templete-surat',$nameFile );
 
         $kategori = Kategori::create([
             'jenis_surat' => $request->jenis_surat,
             'deskripsi' => $request->deskripsi,
             'icon' => $request->icon,
             'persyaratan' => $request->persyaratan,
-            'templete_surat' => $templete->hashName(),
+            'templete_surat' => $nameFile,
 
         ]);
 
         if($kategori){
             $isian = explode(',', $request->isian);
             foreach ($isian as $key => $value) {
+                $name = strtolower($value);
+                $name = str_replace(" ","_",$name);
                 IsianKategori::create([
                     'kategori_id'=> $kategori->id,
-                    'item' =>$value
+                    'title' =>$value,
+                    'name' => $name
+                ]);
+            }
+            $lampiran = explode(',', $request->lampiran);
+            foreach ($lampiran as $key => $value) {
+                $name = strtolower($value);
+                $name = str_replace(" ","_",$name);
+                LampiranKategori::create([
+                    'kategori_id'=> $kategori->id,
+                    'title' =>$value,
+                    'name' => $name
                 ]);
             }
             return redirect()->route('index')->with(['success' => 'Data Berhasil Disimpan!']);

@@ -14,6 +14,7 @@ use App\Http\Controllers\KategoriSuratController;
 
 use App\Models\Staff;
 use App\Models\Warga;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +65,6 @@ Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () 
         Route::post('wargaimport', [WargaController::class, 'wargaimport'])->name('wargaimport');
         Route::get('wargaexport', [WargaController::class, 'wargaexport'])->name('wargaexport');
         Route::get('/warga', [WargaController::class, 'index'])->name('warga');
-        Route::get('/create-akun', [WargaController::class, 'gendata'])->name('create-akun');
-        Route::post('/create-account', [WargaController::class, 'gendatapost'])->name('create-account');
         Route::get('/warga-add', [WargaController::class, 'create'])->name('warga-add');
         Route::post('/add-warga', [WargaController::class, 'store'])->name('add-warga');
         Route::get('/warga-detail/{id}', [WargaController::class, 'show'])->name('warga-detail');
@@ -113,7 +112,11 @@ Route::post('/add-surat', [SuratController::class, 'store'])->name('add-surat');
 Route::get('/surat-detail/{id}', [SuratController::class, 'show'])->name('surat-detail');
 Route::get('/surat-edit/{id}', [SuratController::class, 'edit'])->name('surat-edit');
 Route::post('/update-surat/{id}', [SuratController::class, 'update'])->name('update-surat');
-Route::get('/suratdelete', [SuratController::class, 'destroy'])->name('suratdelete');
+Route::get('/suratdelete/{id}', [SuratController::class, 'destroy'])->name('suratdelete');
+Route::get('/list-surat-user', [SuratController::class, 'listSurat'])->name('list-surat');
+Route::get('/download-surat/{id}', [SuratController::class, 'downloadSurat'])->name('download-surat');
+Route::get('/kades-verifikasi', [SuratController::class, 'kadesUpdate'])->name('kades-verifikasi');
+Route::get('/staff-verifikasi', [SuratController::class, 'staffUpdate'])->name('staff-verifikasi');
 
 
 // Panduan

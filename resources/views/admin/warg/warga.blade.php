@@ -115,9 +115,6 @@
     <a href="{{ asset('assert/templete_import/warga.xlsx') }}">
         <button href="" type="button" class="btn btn-success btn-block mt-2">Download Templete</button>
     </a>
-    <a href="{{ route('create-akun') }}">
-        <button href="" type="button" class="btn btn-success btn-block mt-2">Buat Akun Warga</button>
-    </a>
     <div class="row mt-4">
         <div class="col-12">
             <div class="card">

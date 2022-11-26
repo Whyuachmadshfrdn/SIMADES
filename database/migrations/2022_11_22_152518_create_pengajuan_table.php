@@ -15,8 +15,10 @@ class CreatePengajuanTable extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('warga_id');
+            $table->bigInteger('user_id');
             $table->bigInteger('kategori_id');
+            $table->string('status',255)->default('menunggu verifikasi staff');
+            $table->string('file',255)->nullable();
             $table->timestamps();
         });
     }

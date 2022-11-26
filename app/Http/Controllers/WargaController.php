@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
-use App\Models\User;
 use App\Exports\WargaExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
@@ -18,29 +17,6 @@ class WargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function gendata()
-    {
-        $wargas = Warga::whereNull('user_id')->get();
-        return View('admin.warg.create-akun', compact('wargas'));
-    }
-
-    public function gendatapost()
-    {
-        foreach (Warga::whereNull('user_id')->get() as $wargas){
-
-            $user = User::create([
-                'name' => $wargas->nama_warga,
-                'email' => $wargas->nik_warga,
-                'role' => "warga",
-                'password' => bcrypt($wargas->nik_warga),
-            ]);
-            $wargas->user_id = $user->id;
-            $wargas->save();
-        }
-        
-        return redirect()->back();
-    }
-
     public function dashboard()
     {
         return View('wargas.dashboard-warga');

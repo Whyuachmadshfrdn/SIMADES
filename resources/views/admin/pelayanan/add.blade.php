@@ -81,6 +81,11 @@
                                 <textarea class="form-control form-control-alternative @error('isian') is-invalid @enderror" name="isian"
                                     placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL" ></textarea>
                             </div>
+                            <div class="form-group">
+                                <label class="form-control-label">Lampiran Surat</label>
+                                <textarea class="form-control form-control-alternative @error('lampiran') is-invalid @enderror" name="lampiran"
+                                    placeholder="contoh: Kartu Keluarga,KTP,DLL" required></textarea>
+                            </div>
                         </div>
                     </div>
                         <div class="form-group mt-3">
