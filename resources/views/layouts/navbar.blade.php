@@ -8,15 +8,15 @@
                 </div>
             </div>
         </a> <br>
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'kades')
             <li class="nav-item mt-5">
-                <a class="nav-link" href="/dashboard-admin">
+                <a class="nav-link" href="{{ Route('dashboard-admin') }}">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span>Dashboard</span></a>
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'kades')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -25,15 +25,17 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/warga">Warga</a>
-                        <a class="collapse-item" href="/keluarga">Keluarga</a>
-                        <a class="collapse-item" href="/staff">Staff</a>
+                        <a class="collapse-item" href="{{ Route('warga') }}">Warga</a>
+                        <a class="collapse-item" href="{{ Route('keluarga') }}">Keluarga</a>
+                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'kades')
+                            <a class="collapse-item" href="{{ Route('staff') }}">Staff</a>
+                        @endif
                     </div>
                 </div>
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'warga')
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'warga')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
@@ -43,8 +45,8 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/ajukan">Ajukan Surat</a>
-                        <a class="collapse-item" href="konfirmasi-pengajuan.php">Status Surat</a>
+                        <a class="collapse-item" href="{{ Route('ajukan') }}">Ajukan Surat</a>
+                        <a class="collapse-item" href="#">Status Surat</a>
                     </div>
                 </div>
             </li>
@@ -60,13 +62,13 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/index">Tambah Kategori Surat</a>
+                        <a class="collapse-item" href="{{ Route('index') }}">Tambah Kategori Surat</a>
                     </div>
                 </div>
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'kades')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone"
                     aria-expanded="true" aria-controls="collapseone">
@@ -199,6 +201,4 @@
                     </li>
                 </ul>
             </nav>
-        {{-- </div>
-    </div>
-</div> --}}
+

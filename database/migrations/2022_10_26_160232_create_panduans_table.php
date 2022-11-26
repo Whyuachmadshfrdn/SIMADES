@@ -17,6 +17,7 @@ class CreatePanduansTable extends Migration
             $table->id();
             $table->string("judul",225) ->nullable();
             $table->text("deskripsi") ->nullable();
+            $table->string("gambar", 225) ->nullable();
             $table->timestamps();
         });
     }

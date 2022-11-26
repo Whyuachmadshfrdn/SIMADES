@@ -44,7 +44,7 @@
                                         </a>
                                     </td>
                                     <td width="7%">
-                                        <form method="post" action="{{route('panduan.destroy',$item->id)}}">
+                                        <form method="post" action="{{route('panduan.destroy', $item->id)}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-block btn-danger">Hapus</button>
@@ -53,7 +53,7 @@
                                 </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Staff belum Tersedia.
+                                        Data Panduan belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>                    

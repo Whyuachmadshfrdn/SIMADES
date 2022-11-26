@@ -8,7 +8,7 @@
       <div class="card-header">
         <h3 class="card-title">Tambah Panduan</h3>
       </div>
-      <form action="input" method="{{ route('panduan.store') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('panduan.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
           <div class="form-group">

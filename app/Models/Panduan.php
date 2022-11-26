@@ -13,5 +13,6 @@ class Panduan extends Model
         'no',
         'judul',
         'deskripsi',
+        'gambar',
     ];
 }

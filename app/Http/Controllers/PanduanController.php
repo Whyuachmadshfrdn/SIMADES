@@ -10,7 +10,7 @@ class PanduanController extends Controller
 {
     public function index()
     {
-        $panduans = Panduan::latest()->paginate(100);
+        $panduans = Panduan::all();
         return view('admin.panduans.panduan', compact('panduans'));
     }
 
@@ -21,14 +21,20 @@ class PanduanController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'judul' =>'required',
             'deskripsi' =>'required',
+            'gambar' => 'required|image|mimes:png,jpg,jpeg',
         ]);
+
+        $gambar = $request->file('gambar');
+        $gambar->storeAs('public/panduan', $gambar->hashName());
         
         $panduans = Panduan::create([
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi,
+            'gambar' => $gambar->hashName()
 
         ]);
 
@@ -41,7 +47,7 @@ class PanduanController extends Controller
 
     public function show($id)
     {
-        $panduans = Panduan::where('id', $id)->get();
+        $panduans = Panduan::find($id);
         return view('admin.panduans.detail-panduan', compact('panduans'));
     }
 
@@ -55,15 +61,61 @@ class PanduanController extends Controller
     {
         $this->validate($request, [
             'judul' =>'required',
-            'deskripsi' =>'required'
-
+            'deskripsi' =>'required',
+            'gambar' =>'required'
         ]);
+
 
         $panduans = Panduan::findOrFail($id);
-        $panduans->update([
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi
-        ]);
+
+        if($request->file('gambar') == "") {
+            $wargas->update([
+                'kk' => $request->kk,
+                'nik_warga' => $request->nik_warga,
+                'nama_warga' => $request->nama_warga,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tmpt_lahir' => $request->tmpt_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'gol_darah' => $request->gol_darah,
+                'agama' => $request->agama,
+                'status_perkawinan' => $request->status_perkawinan,
+                'shdk' => $request->shdk,
+                'pendidikan_akhir' => $request->pendidikan_akhir,
+                'pekerjaan' => $request->pekerjaan,
+                'nama_ibu' => $request->nama_ibu,
+                'nama_ayah' => $request->nama_ayah,
+                'alamat' => $request->alamat,
+                'kelurahan' => $request->kelurahan,
+                'rt' => $request->rt,
+            ]);
+        } else {
+
+            Storage::disk('local')->delete('public/warga/'.$wargas->foto);
+            $foto = $request->file('foto');
+            $foto->storeAs('public/warga', $foto->hashName());
+
+            $wargas->update([
+                'kk' => $request->kk,
+                'nik_warga' => $request->nik_warga,
+                'nama_warga' => $request->nama_warga,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tmpt_lahir' => $request->tmpt_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'gol_darah' => $request->gol_darah,
+                'agama' => $request->agama,
+                'status_perkawinan' => $request->status_perkawinan,
+                'shdk' => $request->shdk,
+                'pendidikan_akhir' => $request->shdk,
+                'pekerjaan' => $request->shdk,
+                'nama_ibu' => $request->nama_ibu,
+                'nama_ayah' => $request->nama_ayah,
+                'alamat' => $request->alamat,
+                'kelurahan' => $request->kelurahan,
+                'rt' => $request->rt,
+                'foto' => $foto->hashName()
+            ]);
+        }
+
 
         if($panduans){
             return redirect()->route('panduan.index')->with(['success' => 'Data Berhasil Diupdate!']);

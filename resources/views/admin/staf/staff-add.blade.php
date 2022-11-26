@@ -16,7 +16,7 @@
                                                 <p class="mb-0 text-sm">Kelola Data Staff</p>
                                             </div>
                                             <div class="mb-3">
-                                                <a href="/staff" class="btn btn-success" title="Kembali"><i class="fas fa-arrow-left"></i> Kembali</a>
+                                                <a href="{{ Route('staff') }}" class="btn btn-success" title="Kembali"><i class="fas fa-arrow-left"></i> Kembali</a>
                                             </div>
                                         </div>
                                     </div>
@@ -30,7 +30,7 @@
                     <div class="col">
                         <div class="card bg-secondary shadow h-100">
                             <div class="card-body">
-                                <form autocomplete="off" action="/add-staff" method="post" enctype="multipart/form-data">
+                                <form autocomplete="off" action="{{ Route('add-staff') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-4 col-md-6">

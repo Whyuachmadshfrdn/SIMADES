@@ -15,7 +15,7 @@
                                         <p class="mb-0 text-sm">Kelola Data Warga</p>
                                     </div>
                                     <div class="mb-3">
-                                        <a href="/warga-add" class="btn btn-success" title="Tambah"><i
+                                        <a href="{{ Route('warga-add') }}" class="btn btn-success" title="Tambah"><i
                                                 class="fas fa-plus"></i> Tambah Warga</a>
                                     </div>
                                 </div>
@@ -115,9 +115,13 @@
     <a href="{{ asset('assert/templete_import/warga.xlsx') }}">
         <button href="" type="button" class="btn btn-success btn-block mt-2">Download Templete</button>
     </a>
-    <a href="{{ route('create-akun') }}">
-        <button href="" type="button" class="btn btn-success btn-block mt-2">Buat Akun Warga</button>
-    </a>
+
+    @if (auth()->user()->role == 'admin')
+        <a href="{{ route('create-akun') }}">
+            <button href="" type="button" class="btn btn-success btn-block mt-2">Buat Akun Warga</button>
+        </a>
+    @endif
+
     <div class="row mt-4">
         <div class="col-12">
             <div class="card">
@@ -140,13 +144,13 @@
                                     <td>{{ $item->nik_warga }}</td>
                                     <td>{{ $item->rt }}</td>
                                     <td width="7%">
-                                        <a href="{{ route('warga-detail', $item->id) }}">
+                                        <a href="{{ Route('warga-detail', $item->id) }}">
                                             <button type="button" class="btn btn-block btn-primary">Lihat</button>
                                         </a>
-                                        <a href="/ubah-warga/{{ $item->id }}">
+                                        <a href="{{ Route('ubah-warga' ,$item->id) }}">
                                             <button type="button" class="btn btn-block btn-warning">Ubah</button>
                                         </a>
-                                        <form action="/wargadelete/{{ $item->id }}">
+                                        <form action="{{ Route('wargadelete' ,$item->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-block btn-danger">Hapus</button>

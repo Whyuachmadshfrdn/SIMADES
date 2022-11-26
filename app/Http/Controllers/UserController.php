@@ -47,7 +47,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
 
         if($users){
@@ -93,16 +93,15 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
-            // 'role' => 'required',
-            'password' => 'required',
+            'role' => 'required',
         ]);
 
         $users = User::find($id);
         $users->update([
             'name' => $request->name,
             'email' => $request->email,
-            // 'role' => $request->role,
-            'password' => $request->password,
+            'role' => $request->role,
+            'password' => bcrypt($request->password),
         ]);
 
         if($users){

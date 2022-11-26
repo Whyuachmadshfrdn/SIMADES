@@ -47,16 +47,16 @@
                                             <label class="form-control-label" for="role">Role</label>
                                             <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
                                                 <option selected value="">Pilih Role</option> 
-                                                <option >admin</option>
-                                                <option >kades</option>
-                                                <option >staff</option>
-                                                <option >warga</option>
+                                                <option {{ $users->role == 'admin' ? 'selected=selected' : '' }}>admin</option>
+                                                <option {{ $users->role == 'kades' ? 'selected=selected' : '' }}>kades</option>
+                                                <option {{ $users->role == 'staff' ? 'selected=selected' : '' }}>staff</option>
+                                                <option {{ $users->role == 'warga' ? 'selected=selected' : '' }}>warga</option>
                                             </select>
                                             @error('role')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="form-group col-lg-4 col-md-6">
-                                            <label class="form-control-label" for="password">Password</label>
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password ..." value="{{ $users->password }}">
+                                            <label class="form-control-label" for="password">New Password</label>
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan Password ..." value="">
                                             @error('password')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
                                         </div>
                                     </div>

@@ -25,7 +25,7 @@
                                     <p class="mb-0 text-sm">Kelola Surat </p>
                                 </div>
                                 <div class="mb-3">
-                                    <a href="/index" class="btn btn-success" title="Kembali"><i
+                                    <a href="{{ Route('index') }}" class="btn btn-success" title="Kembali"><i
                                             class="fas fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                     <h3 class="mb-0">Tambah Surat</h3>
                 </div>
                 <div class="card-body">
-                    <form autocomplete="off" action="/add-kategori" method="post" enctype="multipart/form-data">
+                    <form autocomplete="off" action="{{ Route('add-kategori') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <h6 class="heading-small text-muted">Detail Surat</h6>
                         <div class="pl-lg-4">

@@ -17,7 +17,7 @@ class SuratController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        return view('admin.surats.ajukan', compact('kategori'));
+        return view('wargas.surats.ajukan', compact('kategori'));
     }
 
     /**
@@ -29,7 +29,7 @@ class SuratController extends Controller
     {
         $kategori_id = $request->pilih_kategori;
         $isian = IsianKategori::where('kategori_id', $request->pilih_kategori)->get();
-        return view('admin.surats.add-pengajuan', compact('isian', 'kategori_id'));
+        return view('wargas.surats.add-pengajuan', compact('isian', 'kategori_id'));
     }
 
 
@@ -69,7 +69,7 @@ class SuratController extends Controller
     public function edit($id)
     {
         $isian_kategori = IsianKategori::find($id);
-        return view('admin.pelayanan.edit', compact('isian_kategori'));
+        return view('wargas.pelayanan.edit', compact('isian_kategori'));
 
     }
 

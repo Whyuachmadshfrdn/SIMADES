@@ -15,7 +15,7 @@
                                         <p class="mb-0 text-sm">Kelola Kategori Pelayanan Surat</p>
                                     </div>
                                     <div class="mb-3">
-                                        <a href="/add" class="btn btn-success" title="Tambah"><i class="fas fa-plus"></i>
+                                        <a href="{{ Route('add') }}" class="btn btn-success" title="Tambah"><i class="fas fa-plus"></i>
                                             Tambah Jenis Surat</a>
                                     </div>
                                 </div>
@@ -64,13 +64,13 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->jenis_surat }}</td>
                                         <td width="7%">
-                                            <a href="/detail-kategori/{{ $item->id }}">
+                                            <a href="{{ Route('detail-kategori' ,$item->id) }}">
                                                 <button type="button" class="btn btn-block btn-primary">Lihat</button>
                                             </a>
-                                            <a href="/edit-kategori/{{ $item->id }}">
+                                            <a href="{{ route('edit-kategori' ,$item->id) }}">
                                                 <button type="button" class="btn btn-block btn-warning">Ubah</button>
                                             </a>
-                                            <form action="/kategoridelete/{{ $item->id }}">
+                                            <form action="{{ Route('kategoridelete' ,$item->id) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-block btn-danger">Hapus</button>

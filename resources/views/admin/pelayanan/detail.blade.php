@@ -24,7 +24,7 @@
                                     <p class="mb-0 text-sm">Kelola Surat</p>
                                 </div>
                                 <div class="mb-3">
-                                    <a href="/index" class="btn btn-success" title="Kembali"><i
+                                    <a href="{{ Route('index') }}" class="btn btn-success" title="Kembali"><i
                                             class="fas fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </div>

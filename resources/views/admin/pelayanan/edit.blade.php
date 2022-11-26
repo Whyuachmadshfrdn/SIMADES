@@ -17,13 +17,15 @@
                 <div class="col">
                     <div class="card shadow h-100">
                         <div class="card-header border-0">
-                            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between text-center text-md-left">
+                            <div
+                                class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between text-center text-md-left">
                                 <div class="mb-3">
                                     <h2 class="mb-0">Edit Surat</h2>
                                     <p class="mb-0 text-sm">Kelola Surat</p>
                                 </div>
                                 <div class="mb-3">
-                                    <a href="/index" class="btn btn-success" title="Kembali"><i class="fas fa-arrow-left"></i> Kembali</a>
+                                    <a href="{{ Route('index') }}" class="btn btn-success" title="Kembali"><i
+                                            class="fas fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </div>
                         </div>
@@ -39,17 +41,19 @@
                 <div class="card-header bg-white border-0">
                     <h3 class="mb-0">Edit Surat</h3>
                 </div>
-                    
+
                 <div class="card-body">
-                    <form autocomplete="off" action="/update-kategori/{{ $kategori->id }}" method="post" enctype="multipart/form-data">
-                        @csrf 
+                    <form autocomplete="off" action="{{ Route('update-kategori', $kategori->id) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
                         <h6 class="heading-small text-muted">Detail Surat</h6>
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-control-label">Nama Surat</label>
-                                        <input class="form-control form-control-alternative" name="jenis_surat" value="{{ $kategori->jenis_surat }}">
+                                        <input class="form-control form-control-alternative" name="jenis_surat"
+                                            value="{{ $kategori->jenis_surat }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -65,21 +69,23 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">Persyaratan</label>
-                                <textarea class="form-control form-control-alternative" name="persyaratan" placeholder="Masukkan persyaratan untuk membuat surat yang ditujukan untuk warga">{{ $kategori->persyaratan }}</textarea>
+                                <textarea class="form-control form-control-alternative" name="persyaratan"
+                                    placeholder="Masukkan persyaratan untuk membuat surat yang ditujukan untuk warga">{{ $kategori->persyaratan }}</textarea>
                             </div>
                             <div class="form-group col-lg-4 col-md-6">
                                 <label class="form-control-label" for="foto">Templete Surat</label>
-                                <input type="file" class="form-control @error('templete_surat') is-invalid @enderror" name="templete_surat" id="customFile" />
-                                @error('templete_surat')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
+                                <input type="file" class="form-control @error('templete_surat') is-invalid @enderror"
+                                    name="templete_surat" id="customFile" />
+                                @error('templete_surat')
+                                    <span class="invalid-feedback font-weight-bold">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label class="form-control-label">Isian Input Surat</label>
-                                
-                                    <textarea class="form-control form-control-alternative @error('isian') is-invalid @enderror" name="isian"
-                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL" >{{ implode($isian_kategori->pluck("item")->toArray(), ",") }}
-                                    </textarea> 
-                                
+                                <textarea class="form-control form-control-alternative @error('isian') is-invalid @enderror" name="isian"
+                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL">{{ implode($isian_kategori->pluck('item')->toArray(), ',') }}
+                                    </textarea>
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -93,18 +99,18 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/jquery.fancybox.js') }}"></script>
-<script src="{{ asset('js/surat.js') }}"></script>
-<script>
-    $(document).ready(function(){
-        $(".ikon").val("{{ $kategori->icon }}");
-        $("input:checkbox").change(function () {
-            if ($(this).prop('checked') == true) {
-                $(this).next().val('1');
-            } else {
-                $(this).next().val('0');
-            }
+    <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('js/surat.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".ikon").val("{{ $kategori->icon }}");
+            $("input:checkbox").change(function() {
+                if ($(this).prop('checked') == true) {
+                    $(this).next().val('1');
+                } else {
+                    $(this).next().val('0');
+                }
+            });
         });
-    });
-</script>
+    </script>
 @endpush

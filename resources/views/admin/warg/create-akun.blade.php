@@ -15,7 +15,7 @@
                                         <p class="mb-0 text-sm">Data Warga belum memiliki akun</p>
                                     </div>
                                     <div class="mb-3">
-                                        <a href="/warga" class="btn btn-success" title="Kembali"><i
+                                        <a href="{{ Route('warga') }}" class="btn btn-success" title="Kembali"><i
                                                 class="fas fa-arrow-left"></i> Kembali</a>
                                     </div>
                                 </div>
@@ -37,8 +37,6 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>NIK</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,23 +45,6 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->nama_warga }}</td>
                                                 <td>{{ $item->nik_warga }}</td>
-                                                <td>{{ $item->role }}</td>
-                                                <td width="7%">
-                                                    <a href="#">
-                                                        <button type="button"
-                                                            class="btn btn-block btn-primary">Lihat</button>
-                                                    </a>
-                                                    <a href="#">
-                                                        <button type="button"
-                                                            class="btn btn-block btn-warning">Ubah</button>
-                                                    </a>
-                                                    <form action="#">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-block btn-danger">Hapus</button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         @empty
                                             <div class="alert alert-danger">

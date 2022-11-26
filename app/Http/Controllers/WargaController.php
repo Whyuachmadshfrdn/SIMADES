@@ -18,6 +18,20 @@ class WargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+     public function datakeluarga()
+    {
+        $wargas = Warga::where('shdk', 'Kepala Keluarga')->get();
+        return view('admin.family.keluarga', compact('wargas'));
+    }
+
+    public function detkeluarga($id)
+    {
+        $kepala_keluarga = Warga::find($id);
+        $wargas = Warga::where("kk", $kepala_keluarga->kk)->where("nik_warga", "!=", $kepala_keluarga->nik_wargas)->get();
+        return view("admin.family.detail-keluarga", compact('wargas', 'kepala_keluarga'));
+    }
+
     public function gendata()
     {
         $wargas = Warga::whereNull('user_id')->get();
@@ -85,11 +99,11 @@ class WargaController extends Controller
             'alamat' => 'required',
             'kelurahan' => 'required',
             'rt' => 'required',
-            'foto' => 'required|image|mimes:png,jpg,jpeg',
+            // 'foto' => 'required|image|mimes:png,jpg,jpeg',
         ]);
        
         $foto = $request->file('foto');
-        $foto->storeAs('public/warga', $foto->hashName());
+        // $foto->storeAs('public/warga', $foto->hashName());
 
         $wargas = Warga::create([
             'kk' => $request->kk,
@@ -109,7 +123,7 @@ class WargaController extends Controller
             'alamat' => $request->alamat,
             'kelurahan' => $request->kelurahan,
             'rt' => $request->rt,
-            'foto' => $foto->hashName()
+            // 'foto' => $foto->hashName()
         ]);
 
         if($wargas){

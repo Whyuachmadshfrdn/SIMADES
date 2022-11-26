@@ -7,9 +7,8 @@
                 <div class="card-header">
                     <h3 class="card-title">Ubah Data Staff</h3>
                 </div>
-                <form action="/update-staff/{{ $staff->id }}" method="post" enctype="multipart/form-data">
+                <form action="{{ Route('update-staff' ,$staff->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    {{-- @method('PUT') --}}
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Lengkap Staf</label>
