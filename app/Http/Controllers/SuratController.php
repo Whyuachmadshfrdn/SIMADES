@@ -210,7 +210,7 @@ class SuratController extends Controller
 
     public function showLampiran($id)
     {
-        $pengajuan = Pengajuan::find($request->id);
+        $pengajuan = Pengajuan::find($id);
         
         $data['lampirans'] = LampiranPengajuan::where('pengajuan_id',$id)->get();
         $data['lampiran_categories'] = LampiranKategori::where('kategori_id',$pengajuan->kategori_id)->get();

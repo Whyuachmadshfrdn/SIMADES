@@ -117,6 +117,7 @@ Route::get('/list-surat-user', [SuratController::class, 'listSurat'])->name('lis
 Route::get('/download-surat/{id}', [SuratController::class, 'downloadSurat'])->name('download-surat');
 Route::get('/kades-verifikasi', [SuratController::class, 'kadesUpdate'])->name('kades-verifikasi');
 Route::get('/staff-verifikasi', [SuratController::class, 'staffUpdate'])->name('staff-verifikasi');
+Route::get('/lampiran/{id}', [SuratController::class, 'showLampiran'])->name('lampiran');
 
 
 // Panduan

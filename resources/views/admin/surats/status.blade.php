@@ -52,6 +52,13 @@
                                                 </button>
                                                 </a>
                                             </div>
+                                            <div class="col">
+                                                <a href="/lampiran/{{$pengajuan->id}}">
+                                                <button type="button" class="btn btn-xs btn-danger">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </button>
+                                                </a>
+                                            </div>
                                                 @if($pengajuan->status == 'selesai' || auth()->user()->role == 'kades' || auth()->user()->role == 'staff')
                                             
                                             <div class="col">
