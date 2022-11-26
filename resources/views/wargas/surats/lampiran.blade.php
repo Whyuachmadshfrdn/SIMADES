@@ -17,86 +17,22 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Jenis Surat</th>
-                                    <th>Nama Pengaju</th>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>Status Surat</th>
-                                    <th>Aksi</th>
+                                    <th>Nama</th>
+                                    <th>Download</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($pengajuans as $pengajuan)
+                                @foreach($lampiran_categories as $key => $lampiran)
                                     <tr>
-                                        <td>{{$pengajuan->kategori->jenis_surat}}</td>
-                                        <td>{{auth()->user()->name}}</td>
-                                        <td>{{$pengajuan->created_at}}</td>
-                                        <td>
-                                            @if($pengajuan->status == 'menunggu verifikasi staff')
-                                             <mark style="background-color: yellow">Menunggu verifikasi staff</mark>
-                                            
-                                            @elseif($pengajuan->status == 'menunggu verifikasi kades')
-                                             <mark style="background-color: blue">Menunggu verifikasi kepala desa</mark>
-                                            
-                                            @elseif($pengajuan->status == 'selesai')
-                                             <mark style="background-color: green">Selesai</mark>
-                                            @else
-                                             <mark style="background-color: red">Ditolak</mark>
-                                            @endif
-                                        
-                                        </td>
+                                        <td>{{$lampiran->title}}</td>
                                         <td class="d-flex">
                                             <div class="col">
-                                                <a href="/suratdelete/{{$pengajuan->id}}">
-                                                <button type="button" class="btn btn-xs btn-danger">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </div>
-                                                @if($pengajuan->status == 'selesai' || auth()->user()->role == 'kades' || auth()->user()->role == 'staff')
-                                            
-                                            <div class="col">
-                                            <a href="{{ Storage::url('public/surat/surat-pengajuan/') .$pengajuan->file }}">
+                                            <a href="{{ Storage::url('public/surat/lampiran/') .$lampirans[$key]->value }}">
                                             <button type="button" class="btn btn-xs btn-info">
                                                 <i class="fa fa-download" aria-hidden="true"></i>
                                             </button>
                                             </a>
                                             </div>
-                                        
-                                        @endif
-                                        @if(auth()->user()->role == 'kades' && $pengajuan->status == 'menunggu verifikasi kades')
-                                        
-                                            <div class="col">
-                                                <a href="/kades-verifikasi?id={{$pengajuan->id}}&status=1">
-                                                <button type="button" class="btn btn-xs btn-success">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="/kades-verifikasi?id={{$pengajuan->id}}&status=2">
-                                                <button type="button" class="btn btn-xs btn-danger">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </div>
-                                        @endif
-                                        @if(auth()->user()->role == 'staff' && $pengajuan->status == 'menunggu verifikasi staff')
-                                        
-                                            <div class="col">
-                                                <a href="/staff-verifikasi?id={{$pengajuan->id}}&status=1">
-                                                <button type="button" class="btn btn-xs btn-success">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="/staff-verifikasi?id={{$pengajuan->id}}&status=2">
-                                                <button type="button" class="btn btn-xs btn-danger">
-                                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                                </button>
-                                                </a>
-                                            </div>
-                                        @endif
                                         </td>
                                     </tr>
                                 @endforeach
