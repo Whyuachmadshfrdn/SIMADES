@@ -10,6 +10,8 @@ use App\Models\Kategori;
 use App\Models\Pengajuan;
 use App\Models\NoSurat;
 use App\Models\Warga;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CetakLaporanExport;
 use Illuminate\Http\Request;
 
 class SuratController extends Controller
@@ -27,12 +29,11 @@ class SuratController extends Controller
 
     public function listSurat(){
         if (auth()->user()->role == 'warga') {
-            $data['pengajuans'] = Pengajuan::with('kategori')->where('user_id',auth()->id())->get();
+            $data['pengajuans'] = Pengajuan::with('kategori','user')->where('user_id',auth()->id())->get();
         } else {
-            $data['pengajuans'] = Pengajuan::with('kategori')->get();
+            $data['pengajuans'] = Pengajuan::with('kategori','user')->get();
         }
-        
-        return view('admin.surats.status', $data);
+        return view('wargas.surats.status', $data);
     }
 
     /**
@@ -45,7 +46,7 @@ class SuratController extends Controller
         $kategori_id = $request->pilih_kategori;
         $isian = IsianKategori::where('kategori_id', $request->pilih_kategori)->get();
         $lampiran = LampiranKategori::where('kategori_id', $request->pilih_kategori)->get();
-        return view('admin.surats.add-pengajuan', compact('isian','lampiran', 'kategori_id'));
+        return view('wargas.surats.add-pengajuan', compact('isian','lampiran', 'kategori_id'));
     }
 
 
@@ -81,7 +82,7 @@ class SuratController extends Controller
             $template->setValue('pekerjaan',$warga->pekerjaan);
             $template->setValue('alamat_warga',$warga->alamat);
         } catch (\Throwable $th) {
-            //throw $th;
+            
         }
         $pengajuan = Pengajuan::create([
             'user_id' => auth()->id(),
@@ -124,7 +125,7 @@ class SuratController extends Controller
             'file' => $kategori->jenis_surat.$timeNow.'.docx'
         ]);
 
-        return redirect()->back();
+        return redirect()->route('list-surat');
     }
 
     /**
@@ -194,6 +195,8 @@ class SuratController extends Controller
         } else {
             $pengajuan->update(['status' => 'tolak']);
         }
+        return redirect()->back();
+
     }
 
     public function kadesUpdate(Request $request)
@@ -214,6 +217,17 @@ class SuratController extends Controller
         
         $data['lampirans'] = LampiranPengajuan::where('pengajuan_id',$id)->get();
         $data['lampiran_categories'] = LampiranKategori::where('kategori_id',$pengajuan->kategori_id)->get();
-        return view('admin.surats.lampiran', $data);
+        return view('wargas.surats.lampiran', $data);
     }
+
+    public function listpengajuan(Request $request)
+    {
+        $pengajuan = Pengajuan::where('status', 'selesai')->get();
+        return view('admin.surat-keluar.surat-out', compact('pengajuan'));
+    }
+
+    public function laporanexport(Request $request)
+	{
+		return Excel::download(new CetakLaporanExport($request->tgl_awal, $request->tgl_akhir), 'laporan-surat-keluar.xlsx');
+	}
 }

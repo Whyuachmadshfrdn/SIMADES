@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard-Admin</title>
+    <title>Dashboard</title>
 
     <link href="{{ asset('assert/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -117,7 +117,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; 2022 Pemerintahan Kab. Penajam Paser Utara
+            <span>Copyright &copy; 2022 Desa Girimukti Kab. Penajam Paser Utara
                 <br>. All Right Reserved
             </span>
         </div>

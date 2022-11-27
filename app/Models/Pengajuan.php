@@ -17,4 +17,9 @@ class Pengajuan extends Model
     {
         return $this->hasOne(Kategori::class,'id','kategori_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }

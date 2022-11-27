@@ -28,7 +28,7 @@
                                 @foreach($pengajuans as $pengajuan)
                                     <tr>
                                         <td>{{$pengajuan->kategori->jenis_surat}}</td>
-                                        <td>{{auth()->user()->name}}</td>
+                                        <td>{{$pengajuan->user->name}}</td>
                                         <td>{{$pengajuan->created_at}}</td>
                                         <td>
                                             @if($pengajuan->status == 'menunggu verifikasi staff')

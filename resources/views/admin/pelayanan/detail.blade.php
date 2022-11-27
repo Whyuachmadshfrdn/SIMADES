@@ -58,7 +58,7 @@
                             <div>
                                 <p class="h6"><b>Isian Input Surat</b></p>
                                 @foreach ($isian_kategori as $item)
-                                <p class="h5">{{ $item->item }}</p>
+                                <p class="h5">{{ $item->title }}</p>
                                 @endforeach
                             </div>
                             <div class="col-md-8">

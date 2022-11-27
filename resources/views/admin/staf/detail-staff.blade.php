@@ -30,6 +30,10 @@
                                 <p class="h5">{{ $staff->no_telp }}</p>
                             </div>
                             <div>
+                                <p class="h6"><b>EMAIL</b></p>
+                                <p class="h5">{{ $staff->email }}</p>
+                            </div>
+                            <div>
                                 <p class="h6"><b>JENIS KELAMIN</b></p>
                                 <p class="h5">{{ $staff->jenis_kelamin }}</p>
                             </div>

@@ -48,6 +48,7 @@ class StaffController extends Controller
             'jenis_kelamin' =>'required',
             'jabatan' =>'required',
             'no_telp' =>'required',
+            'email' =>'required',
             'foto' =>'required|image|mimes:png,jpg,jpeg',
         ]);
         // dd($request->all());
@@ -64,6 +65,7 @@ class StaffController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'jabatan' => $request->jabatan,
             'no_telp' => $request->no_telp,
+            'email' => $request->email,
             'foto' => $foto->hashName()
         ]);
 
@@ -115,13 +117,13 @@ class StaffController extends Controller
             'tgl_lahir' =>'required',
             'jenis_kelamin' =>'required',
             'jabatan' =>'required',
-            'no_telp' =>'required'
+            'no_telp' =>'required',
+            'email' =>'required',
         ]);
 
         $staff = Staff::findOrFail($id);
 
         if($request->file('foto') == "") {
-            
             $staff->update([
                 'nip_staff' => $request->nip_staff,
                 'nama_staff' => $request->nama_staff,
@@ -129,7 +131,8 @@ class StaffController extends Controller
                 'tgl_lahir' => $request->tgl_lahir,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'jabatan' => $request->jabatan,
-                'no_telp' => $request->no_telp
+                'no_telp' => $request->no_telp,
+                'email' => $request->email,
             ]);
         } else {
 
@@ -146,6 +149,7 @@ class StaffController extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'jabatan' => $request->jabatan,
                 'no_telp' => $request->no_telp,
+                'email' => $request->email,
                 'foto' => $foto->hashName()
             ]);
         }

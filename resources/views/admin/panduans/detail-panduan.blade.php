@@ -15,10 +15,11 @@
                       </div>
                       <div>
                           <p class="h4"><b>Isi Panduan</b></p>
-                          <p class="h5">{{ $panduans->deskripsi }}</p>
+                          <p class="h5">{!! $panduans->deskripsi !!}</p>
                       </div>
-                    <div class="col-md-4">
-                        {{-- <img src="{{ Storage::url('public/staff/') . $staff->foto }}" class="rounded" width="250px"> --}}
+                      <div>
+                        <p class="h4"><b>Gambar</b></p>
+                        <img src="{{ Storage::url('public/panduan/') . $panduans->gambar }}" class="rounded" width="1000px">
                     </div>
                   </div>
               </div>

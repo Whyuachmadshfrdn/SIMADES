@@ -35,18 +35,20 @@
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'warga')
+        @if (auth()->user()->role == 'kades' || auth()->user()->role == 'warga' || auth()->user()->role == 'staff')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
                     <span>Surat</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                        @if (auth()->user()->role == 'warga')
                         <a class="collapse-item" href="{{ Route('ajukan') }}">Ajukan Surat</a>
-                        <a class="collapse-item" href="#">Status Surat</a>
+                        @endif
+                        <a class="collapse-item" href="{{ Route('list-surat') }}">Status Surat Warga</a>
                     </div>
                 </div>
             </li>
@@ -69,20 +71,11 @@
         @endif
 
         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff' || auth()->user()->role == 'kades')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone"
-                    aria-expanded="true" aria-controls="collapseone">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
-                    <span>Permohonan</span>
-                </a>
-                <div id="collapseone" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Surat Masuk</a>
-                        <a class="collapse-item" href="#">Surat Keluar</a>
-                    </div>
-                </div>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ Route('surat-keluar') }}">
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+                <span>Surat Keluar</span></a>
+        </li>
         @endif
 
         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'staff')

@@ -59,6 +59,11 @@
                                             @error('no_telp')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="form-group col-lg-4 col-md-6">
+                                            <label class="form-control-label" for="nik">Email</label>
+                                            <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Masukkan Email Aktif ..." value="">
+                                            @error('email')<span class="invalid-feedback font-weight-bold">{{ $message }}</span>@enderror
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-6">
                                             <label class="form-control-label" for="jenis_kelamin">Jenis Kelamin</label>
                                             <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="jenis_kelamin">
                                                 <option selected value="">Pilih Jenis Kelamin</option>

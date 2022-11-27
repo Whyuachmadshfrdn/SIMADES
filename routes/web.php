@@ -22,6 +22,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () {
+    Route::get('/download-surat/{id}', [SuratController::class, 'downloadSurat'])->name('download-surat');
+    Route::resource('panduan', PanduanController::class);
 
     Route::middleware(['roles:admin'])->group(function () {
         Route::get('/manajemen-index', [UserController::class, 'index'])->name('manajemen-index');
@@ -64,35 +66,43 @@ Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () 
         Route::get('/kategoridelete/{id}', [KategoriSuratController::class, 'destroy'])->name('kategoridelete');
         Route::get('/keluarga', [WargaController::class, 'datakeluarga'])->name('keluarga');
         Route::get('/detail-keluarga/{id}', [WargaController::class, 'detkeluarga'])->name('detail-keluarga');
+        Route::get('/index', [KategoriSuratController::class, 'index'])->name('index');
+        Route::get('/konfir-pelayanan', [KategoriSuratController::class, 'index'])->name('konfir-pelayanan');
+        Route::get('/surat-detail/{id}', [SuratController::class, 'show'])->name('surat-detail');
+        Route::get('/surat-edit/{id}', [SuratController::class, 'edit'])->name('surat-edit');
+        Route::post('/update-surat/{id}', [SuratController::class, 'update'])->name('update-surat');
+        Route::get('/suratdelete/{id}', [SuratController::class, 'destroy'])->name('suratdelete');
+        Route::get('/surat-keluar', [SuratController::class, 'listpengajuan'])->name('surat-keluar');
+        Route::get('laporan-export', [SuratController::class, 'laporanexport'])->name('laporan-export');
+
     });
 
+    Route::middleware(['roles:kades,warga,staff'])->group(function () {
+        Route::get('/list-surat-user', [SuratController::class, 'listSurat'])->name('list-surat');
+
+    });
+
+    
     Route::middleware(['roles:warga'])->group(function () {
         Route::get('/dashboard-warga', [WargaController::class, 'dashboard'])->name('dashboard-warga');
-    });   
+        Route::get('/ajukan', [SuratController::class, 'index'])->name('ajukan');
+        Route::get('/add-pengajuan', [SuratController::class, 'create'])->name('add-pengajuan');
+        Route::post('/add-surat', [SuratController::class, 'store'])->name('add-surat');
+        Route::get('/lampiran/{id}', [SuratController::class, 'showLampiran'])->name('lampiran');
+    });
+    
+
+
+    Route::middleware(['roles:kades'])->group(function () {
+        Route::get('/kades-verifikasi', [SuratController::class, 'kadesUpdate'])->name('kades-verifikasi');
+    });
+
+    Route::middleware(['roles:staff'])->group(function () {
+        Route::get('/staff-verifikasi', [SuratController::class, 'staffUpdate'])->name('staff-verifikasi');
+
+    });
 });
 
-
-Route::get('/index', [KategoriSuratController::class, 'index'])->name('index');
-Route::get('/konfir-pelayanan', [KategoriSuratController::class, 'index'])->name('konfir-pelayanan');
-
-
-// surat
-Route::get('/ajukan', [SuratController::class, 'index'])->name('ajukan');
-Route::get('/add-pengajuan', [SuratController::class, 'create'])->name('add-pengajuan');
-Route::post('/add-surat', [SuratController::class, 'store'])->name('add-surat');
-Route::get('/surat-detail/{id}', [SuratController::class, 'show'])->name('surat-detail');
-Route::get('/surat-edit/{id}', [SuratController::class, 'edit'])->name('surat-edit');
-Route::post('/update-surat/{id}', [SuratController::class, 'update'])->name('update-surat');
-Route::get('/suratdelete/{id}', [SuratController::class, 'destroy'])->name('suratdelete');
-Route::get('/list-surat-user', [SuratController::class, 'listSurat'])->name('list-surat');
-Route::get('/download-surat/{id}', [SuratController::class, 'downloadSurat'])->name('download-surat');
-Route::get('/kades-verifikasi', [SuratController::class, 'kadesUpdate'])->name('kades-verifikasi');
-Route::get('/staff-verifikasi', [SuratController::class, 'staffUpdate'])->name('staff-verifikasi');
-Route::get('/lampiran/{id}', [SuratController::class, 'showLampiran'])->name('lampiran');
-
-
-// Panduan
-Route::resource('panduan', PanduanController::class);
 
 
 require('auth.php');
