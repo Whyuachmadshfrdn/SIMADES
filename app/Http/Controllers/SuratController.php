@@ -69,6 +69,7 @@ class SuratController extends Controller
         }
         $kategori = Kategori::with('lampiran','isian')->findOrFail($request->kategori_id);
         $template = new \PhpOffice\PhpWord\TemplateProcessor(public_path('storage/kategori/templete-surat/'.$kategori->templete_surat));
+        
         $warga = Warga::where('user_id',auth()->user()->id)->first();
         try {
             $suratNumber = $noSurat->no;
@@ -124,7 +125,7 @@ class SuratController extends Controller
         $pengajuan->update([
             'file' => $kategori->jenis_surat.$timeNow.'.docx'
         ]);
-
+        // dd($kategori);
         return redirect()->route('list-surat');
     }
 

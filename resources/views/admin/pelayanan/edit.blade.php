@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">Isian Input Surat</label>
                                 <textarea class="form-control form-control-alternative @error('isian') is-invalid @enderror" name="isian"
-                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL">{{ implode($isian_kategori->pluck('item')->toArray(), ',') }}
+                                    placeholder="contoh: Nama,Bidang Usaha,Nama Suami,DLL">{{ implode($isian_kategori->pluck('title')->toArray(), ',') }}
                                     </textarea>
                             </div>
                         </div>

@@ -74,6 +74,7 @@ Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () 
         Route::get('/suratdelete/{id}', [SuratController::class, 'destroy'])->name('suratdelete');
         Route::get('/surat-keluar', [SuratController::class, 'listpengajuan'])->name('surat-keluar');
         Route::get('laporan-export', [SuratController::class, 'laporanexport'])->name('laporan-export');
+        Route::get('/lampiran/{id}', [SuratController::class, 'showLampiran'])->name('lampiran');
 
     });
 
@@ -88,7 +89,6 @@ Route::middleware(['auth', 'roles:admin,staff,warga,kades'])->group(function () 
         Route::get('/ajukan', [SuratController::class, 'index'])->name('ajukan');
         Route::get('/add-pengajuan', [SuratController::class, 'create'])->name('add-pengajuan');
         Route::post('/add-surat', [SuratController::class, 'store'])->name('add-surat');
-        Route::get('/lampiran/{id}', [SuratController::class, 'showLampiran'])->name('lampiran');
     });
     
 
