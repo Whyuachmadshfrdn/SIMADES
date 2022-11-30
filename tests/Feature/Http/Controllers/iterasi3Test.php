@@ -34,11 +34,11 @@ class iterasi3Test extends TestCase
             $response->assertStatus(200);
     }
 
-    public function testEditwarga()
+    public function testEdit()
     {
         $user = User::where('role', 'admin')->first();
             $response = $this->actingAs($user)
-                ->post(route('panduan.update', 1), [
+                ->put(route('panduan.update', 1), [
                     'judul' => $this->faker->word(),
                     'deskripsi' => $this->faker->word(),
                     'foto' => UploadedFile::fake()->create('test4.jpg', 1024),
@@ -50,7 +50,7 @@ class iterasi3Test extends TestCase
     {
         $user = User::where('role','admin')->first();
         $response = $this->actingAs($user)->get(route('panduan.destroy', 1));
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 
     public function testCreatekategori()

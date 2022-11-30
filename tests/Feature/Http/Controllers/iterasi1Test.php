@@ -51,7 +51,7 @@ class iterasi1Test extends TestCase
         $this->withExceptionHandling();
         $user = User::where('role','admin')->first();
             $response = $this->actingAs($user)
-                ->get(route('warga-detail', 4));
+                ->get(route('warga-detail', 150));
             $response->assertStatus(200);
     }
 
@@ -59,7 +59,7 @@ class iterasi1Test extends TestCase
     {
         $user = User::where('role', 'admin')->first();
             $response = $this->actingAs($user)
-                ->post(route('updatewarga', 4), [
+                ->post(route('updatewarga', 150), [
                     'kk' => '1234567890123456',
                     'nik_warga' => '1234567890123456',
                     'nama_warga' => $this->faker->name(),
@@ -84,9 +84,10 @@ class iterasi1Test extends TestCase
     public function testDeletewarga()
     {
         $user = User::where('role','admin')->first();
-        $response = $this->actingAs($user)->get(route('wargadelete', 4));
+        $response = $this->actingAs($user)->get(route('wargadelete', 150));
         $response->assertStatus(302);
     }
+
 
     // public function testImportwarga()
     // {
