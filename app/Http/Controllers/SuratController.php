@@ -126,7 +126,7 @@ class SuratController extends Controller
         $pengajuan->update([
             'file' => $kategori->jenis_surat.$timeNow.'.docx'
         ]);
-        dd($request->all());
+        // dd($request->all());
         return redirect()->route('list-surat');
     }
 
