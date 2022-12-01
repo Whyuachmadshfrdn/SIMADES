@@ -38,8 +38,6 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $this->validate($request, [
             'nip_staff' =>'required',
             'nama_staff' =>'required',
@@ -51,9 +49,7 @@ class StaffController extends Controller
             'email' =>'required',
             'foto' =>'required|image|mimes:png,jpg,jpeg',
         ]);
-        // dd($request->all());
 
-        // upload foto
         $foto = $request->file('foto');
         $foto->storeAs('public/staff', $foto->hashName());
 
