@@ -58,6 +58,7 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
+    
         $allRequest = $request->all();
         $noSurat = NoSurat::orderByDesc('no')->first();
         if(!$noSurat){
@@ -125,7 +126,7 @@ class SuratController extends Controller
         $pengajuan->update([
             'file' => $kategori->jenis_surat.$timeNow.'.docx'
         ]);
-        // dd($kategori);
+        dd($request->all());
         return redirect()->route('list-surat');
     }
 
