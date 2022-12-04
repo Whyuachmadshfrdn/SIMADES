@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ Storage::url('public/warga/') . $wargas->foto }}" class="rounded" width="250px">
+                            <p class="h4"><b>FOTO WARGA</b></p>
+                            <img src="{{asset('storage/warga/')}}/{{ $wargas->foto }}" class="rounded" width="250px">
                         </div>
                         <div class="col-md-4">
                             <div>

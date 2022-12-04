@@ -19,7 +19,7 @@
                       </div>
                       <div>
                         <p class="h4"><b>Gambar</b></p>
-                        <img src="{{ Storage::url('public/panduan/') . $panduans->gambar }}" class="rounded" width="1000px">
+                        <img src="{{asset('storage/panduan/')}}/{{ $panduans->gambar }}" class="rounded" width="1000px">
                     </div>
                   </div>
               </div>

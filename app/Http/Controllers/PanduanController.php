@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Panduan;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PanduanController extends Controller
 {
@@ -21,28 +22,23 @@ class PanduanController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request, [
             'judul' =>'required',
             'deskripsi' =>'required',
             'gambar' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
-        $gambar = $request->file('gambar');
-        $gambar->storeAs('public/panduan', $gambar->hashName());
+        $gambar = date('ymd'). '-' . $request->gambar->extension();
+        $request->file('gambar')->move(public_path('storage/panduan'), $gambar);
         
-        $panduans = Panduan::create([
+        Panduan::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'gambar' => $gambar->hashName()
+            'gambar' => $gambar
 
         ]);
 
-        if($panduans){
-            return redirect()->route('panduan.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            return redirect()->route('panduan.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        return redirect()->route('panduan.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     public function show($id)
@@ -59,33 +55,22 @@ class PanduanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'judul' =>'required',
-            'deskripsi' =>'required',
-            // 'gambar' =>'required'
-        ]);
+        $request->validate([]);
 
-
+        $panduan = $request->all();
         $panduans = Panduan::findOrFail($id);
 
-        if($request->file('gambar') == "") {
-            $panduans->update([
-                'judul' => $request->judul,
-                'deskripsi' => $request->deskripsi,
-            ]);
+        if($gambar = $request->file('gambar')) {
+            File::delete('storage/panduan'.$panduans->gambar);
+            $file_name = $request->gambar->getClientOriginalName();
+            $gambar->move(public_path('storage/panduan'), $file_name);
+            $panduan['gambar'] = "$file_name";
         } else {
 
-            Storage::disk('local')->delete('public/warga/'.$panduans->gambar);
-            $gambar = $request->file('foto');
-            $gambar->storeAs('public/warga', $gambar->hashName());
-
-            $panduans->update([
-                'judul' => $request->judul,
-                'deskripsi' => $request->deskripsi,
-                'gambar' => $gambar->hashName()
-            ]);
+            unset($panduans['gambar']);
         }
 
+        $panduans->update($panduan);
 
         if($panduans){
             return redirect()->route('panduan.index')->with(['success' => 'Data Berhasil Diupdate!']);
@@ -97,14 +82,9 @@ class PanduanController extends Controller
 
     public function destroy($id)
     {
-        $panduans = Panduan::where('id',$id)->first();
-
-        if ($panduans !=null) {
-            $panduans->delete();
-            return redirect()->route('panduan.index')->with(['message'=> 'Berhasil Terhapus!!']);
-        }
-        
-        return redirect()->route('panduan.index')
-                         ->with(['message'=> 'GAGAL!!']);
+        $panduans = Panduan::find($id);
+        $panduans->delete();
+        File::delete('storage/panduan/'.$panduans->gambar);
+        return redirect()->back()->with(['success', 'panduan Berhasil Terhapus!!']);
     }
 }

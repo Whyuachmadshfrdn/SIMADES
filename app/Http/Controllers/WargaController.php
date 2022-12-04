@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\Imports\WargaImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 class WargaController extends Controller
 {
@@ -99,13 +101,14 @@ class WargaController extends Controller
             'alamat' => 'required',
             'kelurahan' => 'required',
             'rt' => 'required',
-            // 'foto' => 'required|image|mimes:png,jpg,jpeg',
+            'foto' => 'required|image|mimes:png,jpg,jpeg',
         ]);
        
-        $foto = $request->file('foto');
-        // $foto->storeAs('public/warga', $foto->hashName());
+        $foto = $request->nama_warga.'-'.date('ymd'). '.' . $request->foto->extension();
+        $request->file('foto')->move(public_path('storage/warga'), $foto);
 
-        $wargas = Warga::create([
+
+        Warga::create([
             'kk' => $request->kk,
             'nik_warga' => $request->nik_warga,
             'nama_warga' => $request->nama_warga,
@@ -123,19 +126,17 @@ class WargaController extends Controller
             'alamat' => $request->alamat,
             'kelurahan' => $request->kelurahan,
             'rt' => $request->rt,
-            // 'foto' => $foto->hashName()
+            'foto' => $foto
         ]);
 
-        if($wargas){
-            return redirect()->route('warga')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            return redirect()->route('warga')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        return redirect()->route('warga')->with(['success' => 'Data Berhasil Disimpan!']);
+
     }
 
     public function show($id)
     {
         $wargas = Warga::find($id);
+        // dd($wargas);
         return view('admin.warg.detail-warga', compact('wargas'));
     }
 
@@ -147,76 +148,24 @@ class WargaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'kk' => 'required',
-            'nik_warga' => 'required',
-            'nama_warga' => 'required',
-            'jenis_kelamin' => 'required',
-            'tmpt_lahir' => 'required',
-            'tgl_lahir' => 'required',
-            'gol_darah' => 'required',
-            'agama' => 'required',
-            'status_perkawinan' => 'required',
-            'shdk' => 'required',
-            'pendidikan_akhir' => 'required',
-            'pekerjaan' => 'required',
-            'nama_ibu' => 'required',
-            'nama_ayah' => 'required',
-            'alamat' => 'required',
-            'kelurahan' => 'required',
-            'rt' => 'required',
-        ]);
+        $request->validate([]);
 
+        $warga = $request->all();
         $wargas = Warga::findOrFail($id);
         
-        if($request->file('foto') == "") {
-            $wargas->update([
-                'kk' => $request->kk,
-                'nik_warga' => $request->nik_warga,
-                'nama_warga' => $request->nama_warga,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'tmpt_lahir' => $request->tmpt_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
-                'gol_darah' => $request->gol_darah,
-                'agama' => $request->agama,
-                'status_perkawinan' => $request->status_perkawinan,
-                'shdk' => $request->shdk,
-                'pendidikan_akhir' => $request->pendidikan_akhir,
-                'pekerjaan' => $request->pekerjaan,
-                'nama_ibu' => $request->nama_ibu,
-                'nama_ayah' => $request->nama_ayah,
-                'alamat' => $request->alamat,
-                'kelurahan' => $request->kelurahan,
-                'rt' => $request->rt,
-            ]);
+        if($foto = $request->file('foto')) {
+            File::delete('storage/warga'.$wargas->foto);
+            $file_name = $request->foto->getClientOriginalName();
+            $foto->move(public_path('storage/warga'), $file_name);
+            $warga['foto'] = "$file_name";
+            
         } else {
 
-            Storage::disk('local')->delete('public/warga/'.$wargas->foto);
-            $foto = $request->file('foto');
-            $foto->storeAs('public/warga', $foto->hashName());
-
-            $wargas->update([
-                'kk' => $request->kk,
-                'nik_warga' => $request->nik_warga,
-                'nama_warga' => $request->nama_warga,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'tmpt_lahir' => $request->tmpt_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
-                'gol_darah' => $request->gol_darah,
-                'agama' => $request->agama,
-                'status_perkawinan' => $request->status_perkawinan,
-                'shdk' => $request->shdk,
-                'pendidikan_akhir' => $request->shdk,
-                'pekerjaan' => $request->shdk,
-                'nama_ibu' => $request->nama_ibu,
-                'nama_ayah' => $request->nama_ayah,
-                'alamat' => $request->alamat,
-                'kelurahan' => $request->kelurahan,
-                'rt' => $request->rt,
-                'foto' => $foto->hashName()
-            ]);
+           unset($wargas['foto']);
         }
 
+        $wargas->update($warga);
+        // dd($wargas);
         if($wargas){
             return redirect()->route('warga')->with(['success' => 'Data Berhasil Diupdate!']);
         } else {
@@ -226,14 +175,9 @@ class WargaController extends Controller
 
     public function destroy($id)
     {
-        $wargas = Warga::where('id',$id)->first();
-
-        if ($wargas !=null) {
-            $wargas->delete();
-            return redirect()->route('warga')->with(['message'=> 'Berhasil Terhapus!!']);
-        }
-        
-        return redirect()->route('warga')
-                         ->with(['message'=> 'GAGAL!!']);
+        $wargas = Warga::find($id);
+        $wargas->delete();
+        File::delete('storage/warga/'.$wargas->foto);
+        return redirect()->back()->with(['success', 'panduan Berhasil Terhapus!!']);
     }
 }

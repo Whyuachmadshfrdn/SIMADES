@@ -44,9 +44,9 @@
                                         </a>
                                     </td>
                                     <td width="7%">
-                                        <form method="post" action="{{route('panduan.destroy', $item->id)}}">
-                                        @csrf
-                                        @method('DELETE')
+                                        <form action="{{route('panduan.destroy', $item->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                         <button type="submit" class="btn btn-block btn-danger">Hapus</button>
                                         </form>
                                     </td>
